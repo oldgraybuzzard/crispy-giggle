@@ -1,0 +1,19 @@
+{
+  "name": "crispy-giggle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oldgraybuzzard/crispy-giggle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oldgraybuzzard/crispy-giggle/issues"
+  },
+  "homepage": "https://github.com/oldgraybuzzard/crispy-giggle#readme"
+}
