@@ -11,15 +11,15 @@ import React, { useState } from 'react';
 
 function EmployerSignup() {
   const [formState, setFormState] = useState({
-    company: '',
+    companyName: '',
     email: '',
     password: '',
   });
   const [errorMessage, setErrorMessage] = useState('');
-  const { company, email, message } = formState;
+  const { companyName, email, message } = formState;
 
   // temporary front end submit
-  const handleSubmit = e => {
+  const handleFormSubmit = e => {
     e.preventDefault();
     if (!errorMessage) {
       console.log('Submit Form', formState);
@@ -75,8 +75,8 @@ function EmployerSignup() {
   // };
 
   return (
-    <div>
-      <Link to="/login"> Go to Login</Link>
+    <section>
+      <h1> Go to Login</h1>
 
       <h2>Signup</h2>
       <form onSubmit={handleFormSubmit}>
@@ -113,7 +113,7 @@ function EmployerSignup() {
           <button type="submit">Submit</button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }
 
