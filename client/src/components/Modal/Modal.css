@@ -35,6 +35,12 @@
   }
 }
 
+@media (max-width: 490px) {
+  .modal__header {
+    width: 94.5%;
+  }
+}
+
 .modal-enter {
   transform: translateY(-10rem);
   opacity: 0;
@@ -66,6 +72,6 @@
 }
 
 .formRender-container {
-  height: 20rem;
+  height: 15rem;
   width: 100%;
 }
