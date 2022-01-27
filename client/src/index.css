@@ -22,6 +22,31 @@ body {
   padding: 1.5rem 0rem;
 }
 
+.mx-2 {
+  margin-right: calc(1rem);
+  margin-left: calc(1rem);
+}
+
+.px-1 {
+  padding-right: calc(1rem * 0.5);
+  padding-left: calc(1rem * 0.5);
+}
+
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+  list-style: none;
+}
+
+.header-style {
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  padding: 1.5rem 0rem;
+}
+
 .copyright {
   margin-left: 4rem;
 }

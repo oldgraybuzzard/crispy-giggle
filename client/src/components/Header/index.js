@@ -17,15 +17,15 @@ function Header(props) {
         footerClass="place-item__modal-actions"
         footer={<Button onClick={closeModalHandler}>CLOSE</Button>}
       >
-        <div className="form-container">
+        <div className="formRender-container">
           <h2>Test Form!</h2>
         </div>
       </Modal>
-      <header>
+      <header className="flex-row px-1 header-style">
         <h2> Crispy Gigglers</h2>
         <nav>
-          <ul>
-            <li>
+          <ul className="flex-row">
+            <li className="mx-2">
               <p onClick={openModalHandler}> Signup Form </p>
             </li>
           </ul>
