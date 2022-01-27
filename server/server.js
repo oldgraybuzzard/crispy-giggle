@@ -12,7 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/trainingdb', {
   useFindAndModify: false,
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 });
 mongoose.set('useCreateIndex', true);
 mongoose.set('debug', true);

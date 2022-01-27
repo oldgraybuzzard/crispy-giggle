@@ -22,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/oldgraybuzzard/crispy-giggle/issues"
   },
-  "homepage": "https://github.com/oldgraybuzzard/crispy-giggle#readme"
+  "homepage": "https://github.com/oldgraybuzzard/crispy-giggle#readme",
+  "dependencies": {}
 }
