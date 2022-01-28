@@ -1,44 +1,33 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const{ApolloServer} = require('apollo-server-express');
+const {typeDefs, resolvers} = require("./schemas");
+
+const db = require("./config/connection");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const startServer = async () => {
 
-const { User } = require('./models');
+
+  const server = new ApolloServer ({
+    typeDefs, resolvers
+  });
+  //start for Apollo Server//
+  await server.start();
+
+  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+
+}
+
+startServer()
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// here is the connection to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/trainingdb', {
-  useFindAndModify: false,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-});
+db.once("open", ()=>{
 
-mongoose.set('useCreateIndex', true);
-mongoose.set('debug', true);
-
-app.post('/submit', ({ body }, res) => {
-  const user = new User(body);
-
-  User.create(user)
-    .then(dbUser => {
-      res.json(dbUser);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
-
-// do wee need this code below? (lines 36-40) I don't think its needed since we are using GraphQL
-app.get('/users', (req, res) => {
-  User.find({}).then(users => {
-    res.json(users);
+  app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}!`);
   });
-});
-
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
 });
