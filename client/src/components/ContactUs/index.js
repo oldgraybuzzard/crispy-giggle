@@ -2,6 +2,7 @@ import React, {useEffect, useState } from 'react';
 import {Button, Header, Image, Modal } from 'semantic-ui-react';
 import { send } from 'emailjs-com';
 import { validateEmail } from '../../utils/emailValidator';
+import env from 'react-dotenv';
 
 function Contact() {
   
@@ -25,10 +26,10 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     send(
-      'process.env.serviceId',
-      'process.env.templateId',
+      (env.serviceId),
+      (env.templateId),
       toSend,
-      'process.env.userId'
+      'user_wpiXZHfDebJAVoo86p01m'
     )
     .then((response) => {
       console.log('Success, mail had been sent!', response.status, response.text);
