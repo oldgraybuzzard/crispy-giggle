@@ -17,6 +17,10 @@ const employeeSchema = new Schema({
         required: true,
         unique: true
     },
+    deptName: {
+        type: String,
+        required: true,
+    },
     role: {
         type: String,
         trim: true
