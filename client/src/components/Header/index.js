@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../Modal';
-import Button from '../Button';
+import Button from '../FormElements/Button';
+import EmployerSignup from '../../pages/EmployerSignup';
 
 function Header(props) {
   const [showModal, setShowModal] = useState(false);
@@ -18,7 +19,7 @@ function Header(props) {
         footer={<Button onClick={closeModalHandler}>CLOSE</Button>}
       >
         <div className="formRender-container">
-          <h2>Test Form!</h2>
+          <EmployerSignup />
         </div>
       </Modal>
       <header className="flex-row px-1 header-style">
