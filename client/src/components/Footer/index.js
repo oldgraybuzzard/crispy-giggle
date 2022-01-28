@@ -13,7 +13,8 @@ function Footer() {
 
     return (
         <footer className='foot-Container'>
-            <h2 className='copyright'>&copy; <span>{fullYear()}</span> Crispy Gigglers</h2>          
+            <h2 className='copyright'>&copy; <span>{fullYear()}</span> Crispy Gigglers</h2>
+            <Modal />          
            
         </footer>
     );
