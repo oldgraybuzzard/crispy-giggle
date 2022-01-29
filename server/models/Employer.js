@@ -19,10 +19,10 @@ const employerSchema = new Schema({
         required: true,
         minlength: 6
     },
-    department: [
+    courses: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Employee'
+            ref: 'Course'
         }
     ],
     employees: [
