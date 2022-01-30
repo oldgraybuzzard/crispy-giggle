@@ -16,10 +16,21 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     // get all employer
-    employer: async () => {
+    employers: async () => {
       return Employer.find()
-        .select('-__v -password')
-    }
+        .select('-__v')
+    },
+    // get logged in employee
+    employeeMe: async (parents, args, context) => {
+      if (context.employee) {
+        const employeeUserData = await Employee.findOne({ _id: context.employee._id })
+          .select('-__v -password');
+
+          return employeeUserData;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
   },
   Mutation: {
     // create a employer
@@ -46,6 +57,20 @@ const resolvers = {
       const token = signToken(employer);
 
       return { token, employer };
+    },
+    // employer creates employee
+    addEmployee: async (parent, { input }, context ) => {
+      if (context.employer) {
+        const updatedEmployer = await Employer.findByIdAndUpdate(
+          { _id: context.employer._id },
+          { $addToSet: { employees: input }},
+          { new: true, runValidators: true }
+        );
+
+        return updatedEmployer;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
     }
   }
 };

@@ -17,7 +17,7 @@ const employeeSchema = new Schema({
         required: true,
         unique: true
     },
-    deptName: {
+    department: {
         type: String,
         required: true,
     },

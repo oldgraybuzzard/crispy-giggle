@@ -15,8 +15,7 @@ const typeDefs = gql`
   input CourseData {
     coursetext: String
     createdat: String
-    employer: [Employer]
-    employees: [Employee]
+    employees: [EmployeeData]
   }
 
   type Employer {
@@ -42,28 +41,31 @@ const typeDefs = gql`
     _id: ID
     coursetext: String
     createdat: String
-    employer: [Employer]
     employees: [Employee]
   }
 
   type Auth {
     token: ID!
-    user: User
+    employer: Employer
   }
 
   type Query {
     employerMe: Employer
     employers: [Employer]
+    employeeMe: Employee
   }
 
   type Mutation {
     addEmployer(companyName: String!, email: String!, password: String!): Auth
     employerLogin(email: String!, password: String!): Auth
+    addEmployee(input: EmployeeData): Employer
   }
-
 `;
 
 module.exports = typeDefs;
+
+
+
 
 // mutations
 // =====================================================================
