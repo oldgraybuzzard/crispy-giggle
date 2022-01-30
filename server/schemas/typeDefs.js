@@ -55,6 +55,7 @@ const typeDefs = gql`
 
   type Mutation {
     addEmployer(companyName: String!, email: String!, password: String!): Auth
+    employerLogin(email: String!, password: String!): Auth
   }
 
 `;

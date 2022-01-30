@@ -43,6 +43,24 @@ const resolvers = {
       const token = signToken(employer);
 
       return { token, employer };
+    },
+    // login for employer
+    employerLogin: async (parent, { email, password }) => {
+      const employer = await Employer.findOne({ email });
+
+      if (!employer) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const correctPw = await employer.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(employer);
+
+      return { token, employer };
     }
   }
 };
