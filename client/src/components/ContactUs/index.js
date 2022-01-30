@@ -3,6 +3,8 @@ import {Button, Header, Image, Modal } from 'semantic-ui-react';
 import { send } from 'emailjs-com';
 import { validateEmail } from '../../utils/emailValidator';
 import env from 'react-dotenv';
+import './contact.css';
+
 
 function Contact() {
   
@@ -62,7 +64,7 @@ function Contact() {
     }
   };
     return (
-      <Modal
+      <Modal className=''
         centered={false}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
@@ -70,7 +72,7 @@ function Contact() {
         trigger={<Button>Contact Us</Button>}
       >
         <Modal.Content>
-          <Image size='small' src='../../assets/img/mail-us.jpg' wrapped />
+          
           <Modal.Description>
             <Header>Contact Us</Header>
             <p>We would like to hear from you!</p>
@@ -99,6 +101,8 @@ function Contact() {
               </div>
               <div>
                   <label htmlFor="message">Message:</label>
+              </div>
+              <div>
                   <textarea
                       className="form-control"
                       placeholder="Message"
@@ -106,6 +110,7 @@ function Contact() {
                       rows="5"
                       defaultValue={message}
                       onBlur={handleChange} required
+
                   />
               </div>
               {errorMessage && (
@@ -113,22 +118,26 @@ function Contact() {
                       <p className="error-text">{errorMessage}</p>
                   </div>
               )}
-              <div className="text-center">
-              <button type="submit" className="btn btn-primary btn-xl js-scroll-trigger">Send</button>
+              <div>
+              <button
+                type="submit"
+                className='ui primary button'>
+                  Send
+              </button>
+              
+              <Button
+                content="Close"
+                labelPosition='center'
+                icon='close'
+                onClick={() => setOpen(false)}
+                positive
+              />
               </div>
-          </form>
+            </form>
             
           </Modal.Description>
         </Modal.Content>
-        <Modal.Actions>
-              <Button
-            content="Close"
-            labelPosition='right'
-            icon='close'
-            onClick={() => setOpen(false)}
-            positive
-          />
-        </Modal.Actions>
+        
       </Modal>
     )
 }
