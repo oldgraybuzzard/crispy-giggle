@@ -63,7 +63,7 @@ const typeDefs = gql`
   type Mutation {
     addEmployer(companyName: String!, email: String!, password: String!): Auth
     employerLogin(email: String!, password: String!): Auth
-    addEmployee(input: EmployeeData): Employer
+    addEmployee(input: EmployeeData): Employee
     employeeLogin(email: String!, password: String!): EmployeeAuth
   }
 `;
@@ -77,3 +77,7 @@ module.exports = typeDefs;
 // =====================================================================
 // employeeLogin(email: String!, password: String!): Auth
 // addCourse(input: CourseData): Employer
+
+// use context for employer creating employee to store the employer id into the 
+// employee Model. 
+// Reference Deep Thoughts on creating Thoughts and Reactions
