@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import React from 'react';
 
 import decode from 'jwt-decode';
@@ -47,9 +45,3 @@ class AuthService {
 }
 
 export default new AuthService();
-=======
-import React from 'react';
->>>>>>> 5ca73fb66849fba62e095abd9501c9562336ec5a
-=======
-import React from 'react';
->>>>>>> 5ca73fb66849fba62e095abd9501c9562336ec5a
