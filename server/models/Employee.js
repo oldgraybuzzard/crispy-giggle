@@ -33,6 +33,8 @@ const employeeSchema = new Schema({
     ]
 });
 
+module.exports = employeeSchema;
+
 // const Employee = model('Employee', employeeSchema);
 
-module.exports = employeeSchema;
+// module.exports = Employee;

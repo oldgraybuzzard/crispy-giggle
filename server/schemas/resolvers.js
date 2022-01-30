@@ -1,4 +1,4 @@
-const { Employer } = require('../models');
+const { Employer, Employee } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -71,6 +71,25 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
+    },
+    employeeLogin: async (parent, { email, password }) => {
+      const employee = await Employee.findOne({ email });
+
+      if (!employee) {
+        console.log("The employee is " + employee);
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const correctPw = await employee.isCorrectPassword(password);
+
+      if (!correctPw) {
+        console.log(correctPw);
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(employee);
+
+      return { token, employee };
     }
   }
 };

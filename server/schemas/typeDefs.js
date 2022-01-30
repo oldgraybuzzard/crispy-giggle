@@ -32,7 +32,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
-    deptName: String
+    department: String
     role: String
     courses: [Course]
   }
@@ -49,6 +49,11 @@ const typeDefs = gql`
     employer: Employer
   }
 
+  type EmployeeAuth {
+    token: ID!
+    employee: Employee
+  }
+
   type Query {
     employerMe: Employer
     employers: [Employer]
@@ -59,6 +64,7 @@ const typeDefs = gql`
     addEmployer(companyName: String!, email: String!, password: String!): Auth
     employerLogin(email: String!, password: String!): Auth
     addEmployee(input: EmployeeData): Employer
+    employeeLogin(email: String!, password: String!): EmployeeAuth
   }
 `;
 
@@ -69,6 +75,5 @@ module.exports = typeDefs;
 
 // mutations
 // =====================================================================
-// addEmployee(input: EmployeeData): Employer
 // employeeLogin(email: String!, password: String!): Auth
 // addCourse(input: CourseData): Employer
