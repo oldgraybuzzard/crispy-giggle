@@ -3,18 +3,16 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type User {
-    _id: ID
-    firstname: String
-    lastname: String
+  input EmployeeData {
+    firstName: String
+    lastName: String
     email: String
     password: String
+    department: String
     role: String
-    courses: [Course]
   }
 
-  type Course {
-    _id: ID
+  input CourseData {
     coursetext: String
     createdat: String
     employer: [Employer]
@@ -39,6 +37,14 @@ const typeDefs = gql`
     role: String
     courses: [Course]
   }
+  
+  type Course {
+    _id: ID
+    coursetext: String
+    createdat: String
+    employer: [Employer]
+    employees: [Employee]
+  }
 
   type Auth {
     token: ID!
@@ -46,11 +52,8 @@ const typeDefs = gql`
   }
 
   type Query {
-    me: User
-    users: [User]
-    employee(email: String!): Employee
-    employer: [Employer]
-    courses: [Course]
+    employerMe: Employer
+    employers: [Employer]
   }
 
   type Mutation {
@@ -61,3 +64,9 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
+
+// mutations
+// =====================================================================
+// addEmployee(input: EmployeeData): Employer
+// employeeLogin(email: String!, password: String!): Auth
+// addCourse(input: CourseData): Employer

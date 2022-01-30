@@ -33,7 +33,7 @@ module.exports = {
     // verify token and retrieve user data out of it
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
+      req.employer = data;
     } catch {
       console.log('Invalid Tolkien... I mean Invalid Token ;P');
     }

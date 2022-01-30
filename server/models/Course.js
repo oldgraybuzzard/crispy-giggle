@@ -14,10 +14,12 @@ const courseSchema = new Schema({
         default: Date.now,
         get: timestamp => dateFormat(timestamp)
     },
-    employer: {
-        type: String,
-        required: true
-    },
+    employer: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Employer'
+        }
+    ],
     employees: [
         {
             type: Schema.Types.ObjectId,
@@ -27,6 +29,4 @@ const courseSchema = new Schema({
 });
 
 
-const Course = model('Course', courseSchema);
-
-module.exports = Course;
+module.exports = courseSchema;
