@@ -16,7 +16,7 @@ function Header(props) {
       <Modal
         show={showModal}
         onCancel={closeModalHandler}
-        header={props.address}
+        header={'Employer Signup'}
         contentClass="place-item__modal-content"
         footerClass="place-item__modal-actions"
         footer={<Button onClick={closeModalHandler}>CLOSE</Button>}
@@ -28,7 +28,7 @@ function Header(props) {
       <Modal
         show={showModal2}
         onCancel={closeModalHandler2}
-        header={props.address}
+        header={'Login'}
         contentClass="place-item__modal-content"
         footerClass="place-item__modal-actions"
         footer={<Button onClick={closeModalHandler2}>CLOSE</Button>}
