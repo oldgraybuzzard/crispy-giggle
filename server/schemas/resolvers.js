@@ -29,6 +29,11 @@ const resolvers = {
     employer: async () => {
       return Employer.find()
         .select('-__v -password')
+    },
+    // get all courses
+    courses: async () => {
+      return Course.find()
+        .select('-__v');
     }
   },
   Mutation: {

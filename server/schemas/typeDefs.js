@@ -20,17 +20,17 @@ const typeDefs = gql`
     employer: [Employer]
     employees: [Employee]
   }
-  
+
   type Employer {
     _id: ID
     companyName: String
     email: String
     password: String
-    employees: [Employees]
+    employees: [Employee]
     courses: [Course]
   }
 
-  type Employees {
+  type Employee {
     _id: ID
     firstName: String
     lastName: String
@@ -40,16 +40,23 @@ const typeDefs = gql`
     courses: [Course]
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
     me: User
     users: [User]
     employee(email: String!): Employee
     employer: [Employer]
+    courses: [Course]
   }
 
   type Mutation {
     addEmployer(companyName: String!, email: String!, password: String!): Auth
   }
+
 `;
 
 module.exports = typeDefs;
