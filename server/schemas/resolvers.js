@@ -9,7 +9,8 @@ const resolvers = {
       if (context.employer) {
         const employerUserData = await Employer.findOne({ _id: context.employer._id })
           .select('-__v -password')
-          .populate('employees');
+          .populate('employees')
+          .populate('courses');
 
         return employerUserData;
       }
@@ -20,19 +21,29 @@ const resolvers = {
     employers: async () => {
       return Employer.find()
         .select('-__v')
-        .populate('employees');
+        .populate('employees')
+        .populate('courses');
     },
     // get logged in employee
     employeeMe: async (parents, args, context) => {
       if (context.employer) {
         const employeeUserData = await Employee.findOne({ _id: context.employer._id })
-          .select('-__v -password');
+          .select('-__v -password')
+          .populate('employerId')
+          .populate('courses');
 
           return employeeUserData;
       }
 
       throw new AuthenticationError('Not logged in');
     },
+    // get all courses
+    courses: async () => {
+      return Course.find()
+        .select('-__v')
+        .populate('employer')
+        .populate('employees');
+    }
   },
   Mutation: {
     // create a employer
@@ -100,7 +111,7 @@ const resolvers = {
     // add course by employer
     addCourse: async (parent, args, context) => {
       if (context.employer) {
-        const course = await Course.create({ ...args, employerId: context.employer._id });
+        const course = await Course.create({ ...args, employer: context.employer._id });
 
         // update employer with new course
         await Employer.findByIdAndUpdate(

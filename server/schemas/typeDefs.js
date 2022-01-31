@@ -26,7 +26,7 @@ const typeDefs = gql`
     _id: ID
     courseText: String
     createdAt: String
-    employerId: [Employer]
+    employer: [Employer]
     employees: [Employee]
   }
 
@@ -44,6 +44,7 @@ const typeDefs = gql`
     employerMe: Employer
     employers: [Employer]
     employeeMe: Employee
+    courses: [Course]
   }
 
   type Mutation {
