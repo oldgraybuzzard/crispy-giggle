@@ -53,6 +53,8 @@ const typeDefs = gql`
     addEmployee(firstName: String!, lastName: String!, email: String!, password: String!, department: String!, role: String!): Employee
     employeeLogin(email: String!, password: String!): EmployeeAuth
     addCourse(courseText: String!, employees: ID): Course
+    removeCourse(_id: ID!): Course
+ 
   }
 `;
 

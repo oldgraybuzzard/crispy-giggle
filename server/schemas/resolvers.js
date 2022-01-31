@@ -139,7 +139,25 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
+    },
+    // remove course
+    removeCourse: async (parents, { _id } , context) => {
+      if (context.employer) {
+        const removedCourse = await Course.findByIdAndDelete({ _id });
+
+        await Employer.findByIdAndUpdate(
+          { _id: context.employer._id },
+          { $pop: { courses: removedCourse._id }},
+          { new: true }
+        );
+      
+        return removedCourse;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
     }
+    // remove employee   removeEmployee(_id: ID!): Employee
+    // remove employer removeEmployer(_id: ID!): Employer
   }
 };
 
