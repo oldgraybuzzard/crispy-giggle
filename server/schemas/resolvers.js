@@ -171,8 +171,17 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
-    }
-    // remove employer removeEmployer(_id: ID!): Employer
+    },
+    // remove employer
+    removeEmployer: async (parent, { _id }, context) => {
+      if (context.employer._id === _id) {
+        const removedEmployer = await Employer.findByIdAndDelete({ _id: _id });
+
+        return removedEmployer;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
   }
 };
 

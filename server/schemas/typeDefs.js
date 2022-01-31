@@ -55,18 +55,8 @@ const typeDefs = gql`
     addCourse(courseText: String!, employees: ID): Course
     removeCourse(_id: ID!): Course
     removeEmployee(_id: ID!): Employee
+    removeEmployer(_id: ID!): Employer
   }
 `;
 
 module.exports = typeDefs;
-
-
-
-
-// mutations
-// =====================================================================
-// addCourse(input: CourseData): Employer
-
-// use context for employer creating employee to store the employer id into the 
-// employee Model. 
-// Reference Deep Thoughts on creating Thoughts and Reactions
