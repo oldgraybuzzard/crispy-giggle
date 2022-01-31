@@ -18,7 +18,7 @@ const typeDefs = gql`
     email: String
     department: String
     role: String
-    employerId: String
+    employerId: [Employer]
     courses: [Course]
   }
 

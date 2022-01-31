@@ -31,10 +31,12 @@ const employeeSchema = new Schema({
         type: String,
         trim: true
     },
-    employerId: {
-        type: String,
-        required: true,
-    },
+    employerId: [
+        {
+            type: Schema.Types.ObjectId,
+            required: 'Employer',
+        }
+    ],
     courses: [
         {
             type: Schema.Types.ObjectId,
