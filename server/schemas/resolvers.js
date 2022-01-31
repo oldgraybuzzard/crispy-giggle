@@ -24,8 +24,8 @@ const resolvers = {
     },
     // get logged in employee
     employeeMe: async (parents, args, context) => {
-      if (context.employee) {
-        const employeeUserData = await Employee.findOne({ _id: context.employee._id })
+      if (context.employer) {
+        const employeeUserData = await Employee.findOne({ _id: context.employer._id })
           .select('-__v -password');
 
           return employeeUserData;
