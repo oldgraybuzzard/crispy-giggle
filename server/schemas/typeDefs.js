@@ -24,9 +24,9 @@ const typeDefs = gql`
 
   type Course {
     _id: ID
-    coursetext: String
-    createdat: String
-    employerId: String
+    courseText: String
+    createdAt: String
+    employerId: [Employer]
     employees: [Employee]
   }
 
@@ -51,6 +51,7 @@ const typeDefs = gql`
     employerLogin(email: String!, password: String!): Auth
     addEmployee(firstName: String!, lastName: String!, email: String!, password: String!, department: String!, role: String!): Employee
     employeeLogin(email: String!, password: String!): EmployeeAuth
+    addCourse(courseText: String!, employees: ID): Course
   }
 `;
 
@@ -61,7 +62,6 @@ module.exports = typeDefs;
 
 // mutations
 // =====================================================================
-// employeeLogin(email: String!, password: String!): Auth
 // addCourse(input: CourseData): Employer
 
 // use context for employer creating employee to store the employer id into the 

@@ -1,4 +1,4 @@
-const { Employer, Employee } = require('../models');
+const { Employer, Employee, Course } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -69,7 +69,7 @@ const resolvers = {
         await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
           { $push: { employees: employee._id }},
-          { new: true }
+          { new: true, runValidators: true }
         );
 
         return employee;
@@ -77,7 +77,7 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    
+    // employee login
     employeeLogin: async (parent, { email, password }) => {
       const employee = await Employee.findOne({ email });
 
@@ -96,6 +96,32 @@ const resolvers = {
       const token = signToken(employee);
 
       return { token, employee };
+    },
+    // add course by employer
+    addCourse: async (parent, args, context) => {
+      if (context.employer) {
+        const course = await Course.create({ ...args, employerId: context.employer._id });
+
+        // update employer with new course
+        await Employer.findByIdAndUpdate(
+          { _id: context.employer._id },
+          { $push: { courses: course._id }},
+          { new: true, runValidators: true }
+        );
+        // update employee with new course
+        if (args.employee) {
+          await Employee.findByIdAndUpdate(
+            { _id: args.employees },
+            { $push: { courses: course._id }},
+            { new: true, runValidators: true }
+          );
+        }
+        
+
+        return course;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
     }
   }
 };

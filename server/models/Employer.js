@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { Schema, model } = mongoose;
 
-// bring in employerSchema and courseSchema
-const courseSchema = require('./Course');
-
 const employerSchema = new Schema({
     companyName: {
         type: String,
@@ -22,7 +19,12 @@ const employerSchema = new Schema({
         required: true,
         minlength: 6
     },
-    courses: [courseSchema],
+    courses: [
+        {
+            type: Schema.Types.ObjectId,
+            required: 'Course',
+        }
+    ],
     employees: [
         {
             type: Schema.Types.ObjectId,
