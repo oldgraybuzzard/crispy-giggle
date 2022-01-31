@@ -54,7 +54,7 @@ const typeDefs = gql`
     employeeLogin(email: String!, password: String!): EmployeeAuth
     addCourse(courseText: String!, employees: ID): Course
     removeCourse(_id: ID!): Course
- 
+    removeEmployee(_id: ID!): Employee
   }
 `;
 

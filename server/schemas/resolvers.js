@@ -141,7 +141,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     // remove course
-    removeCourse: async (parents, { _id } , context) => {
+    removeCourse: async (parent, { _id } , context) => {
       if (context.employer) {
         const removedCourse = await Course.findByIdAndDelete({ _id: _id });
 
@@ -155,8 +155,23 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
+    },
+    // remove employee
+    removeEmployee: async (parent, { _id }, context) => {
+      if (context.employer) {
+        const removedEmployee = await Employee.findByIdAndDelete({ _id: _id });
+
+        await Employer.findByIdAndUpdate(
+          { _id: context.employer._id },
+          { $pull: { courses: _id }},
+          { new: true }
+        );
+      
+        return removedEmployee;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
     }
-    // remove employee   removeEmployee(_id: ID!): Employee
     // remove employer removeEmployer(_id: ID!): Employer
   }
 };
