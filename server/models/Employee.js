@@ -31,6 +31,10 @@ const employeeSchema = new Schema({
         type: String,
         trim: true
     },
+    employerId: {
+        type: String,
+        required: true,
+    },
     courses: [
         {
             type: Schema.Types.ObjectId,
@@ -55,8 +59,6 @@ employeeSchema.methods.isCorrectPassword = async function(password) {
 };
 
 
-module.exports = employeeSchema;
+const Employee = model('Employee', employeeSchema);
 
-// const Employee = model('Employee', employeeSchema);
-
-// module.exports = Employee;
+module.exports = Employee;

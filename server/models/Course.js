@@ -14,12 +14,10 @@ const courseSchema = new Schema({
         default: Date.now,
         get: timestamp => dateFormat(timestamp)
     },
-    // employer: [
-    //     {
-    //         type: Schema.Types.ObjectId,
-    //         ref: 'Employer'
-    //     }
-    // ],
+    employer: {
+        type: String,
+        required: true,
+    },
     employees: [
         {
             type: Schema.Types.ObjectId,

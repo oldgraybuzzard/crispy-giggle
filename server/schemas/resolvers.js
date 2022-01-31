@@ -8,7 +8,8 @@ const resolvers = {
     employerMe: async (parents, args, context) => {
       if (context.employer) {
         const employerUserData = await Employer.findOne({ _id: context.employer._id })
-          .select('-__v -password');
+          .select('-__v -password')
+          .populate('employees');
 
         return employerUserData;
       }
@@ -19,6 +20,7 @@ const resolvers = {
     employers: async () => {
       return Employer.find()
         .select('-__v')
+        .populate('employees');
     },
     // get logged in employee
     employeeMe: async (parents, args, context) => {
@@ -58,20 +60,24 @@ const resolvers = {
 
       return { token, employer };
     },
+
     // employer creates employee
-    addEmployee: async (parent, { input }, context ) => {
+    addEmployee: async (parent, args, context ) => {
       if (context.employer) {
-        const updatedEmployer = await Employer.findByIdAndUpdate(
+        const employee = await Employee.create({ ...args , employerId: context.employer._id });
+
+        await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
-          { $addToSet: { employees: input }},
-          { new: true, runValidators: true }
+          { $push: { employees: employee._id }},
+          { new: true }
         );
 
-        return updatedEmployer;
+        return employee;
       }
 
       throw new AuthenticationError('You need to be logged in!');
     },
+    
     employeeLogin: async (parent, { email, password }) => {
       const employee = await Employee.findOne({ email });
 

@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const { Schema, model } = mongoose;
 
 // bring in employerSchema and courseSchema
-const employeeSchema = require('./Employee');
 const courseSchema = require('./Course');
 
 const employerSchema = new Schema({
@@ -24,7 +23,12 @@ const employerSchema = new Schema({
         minlength: 6
     },
     courses: [courseSchema],
-    employees: [employeeSchema]
+    employees: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Employee'
+        }
+    ]
 });
 
 // set up pre-save middleware to create password

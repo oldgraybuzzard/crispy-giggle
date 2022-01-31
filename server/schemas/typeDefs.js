@@ -1,22 +1,6 @@
-//git commit//
-
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  input EmployeeData {
-    firstName: String
-    lastName: String
-    email: String
-    password: String
-    department: String
-    role: String
-  }
-
-  input CourseData {
-    coursetext: String
-    createdat: String
-    employees: [EmployeeData]
-  }
 
   type Employer {
     _id: ID
@@ -34,13 +18,15 @@ const typeDefs = gql`
     email: String
     department: String
     role: String
+    employerId: String
     courses: [Course]
   }
-  
+
   type Course {
     _id: ID
     coursetext: String
     createdat: String
+    employerId: String
     employees: [Employee]
   }
 
@@ -63,7 +49,7 @@ const typeDefs = gql`
   type Mutation {
     addEmployer(companyName: String!, email: String!, password: String!): Auth
     employerLogin(email: String!, password: String!): Auth
-    addEmployee(input: EmployeeData): Employee
+    addEmployee(firstName: String!, lastName: String!, email: String!, password: String!, department: String!, role: String!): Employee
     employeeLogin(email: String!, password: String!): EmployeeAuth
   }
 `;
