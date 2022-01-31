@@ -143,11 +143,11 @@ const resolvers = {
     // remove course
     removeCourse: async (parents, { _id } , context) => {
       if (context.employer) {
-        const removedCourse = await Course.findByIdAndDelete({ _id });
+        const removedCourse = await Course.findByIdAndDelete({ _id: _id });
 
         await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
-          { $pop: { courses: removedCourse._id }},
+          { $pull: { courses: _id }},
           { new: true }
         );
       
