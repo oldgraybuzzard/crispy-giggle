@@ -42,7 +42,7 @@ function Header(props) {
         <nav>
           <ul className="flex-row">
             <li className="mx-2">
-              <p onClick={openModalHandler}> Signup Form </p>
+              <p onClick={openModalHandler}> Employer Signup</p>
             </li>
             <li className="mx-2">
               <p onClick={openModalHandler2}> Login </p>
