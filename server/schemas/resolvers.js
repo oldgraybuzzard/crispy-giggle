@@ -150,7 +150,7 @@ const resolvers = {
           { new: true, runValidators: true }
         );
         // update employee with new course
-        if (args.employee) {
+        if (args.employees) {
           await Employee.findByIdAndUpdate(
             { _id: args.employees },
             { $push: { courses: course._id }},
