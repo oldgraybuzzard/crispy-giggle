@@ -239,6 +239,20 @@ const resolvers = {
 
       throw new AuthenticationError('Need to be logged in!');
     },
+    // updateCourse for the possibility of needing to update
+    // courseText or the employees array.
+    updateCourse: async (parents, {_id, courseText, employees}, context) => {
+      if (context.employer) {
+        const course = await Course.findByIdAndUpdate(
+          _id,
+          {courseText: courseText, $addToSet: {employees: employees}}
+        ).populate('employer').populate('employees');
+
+        return course;
+      }
+
+      throw new AuthenticationError('Need to be logged in!');
+    }
   }
 };
 

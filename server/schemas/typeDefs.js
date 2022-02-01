@@ -63,6 +63,7 @@ const typeDefs = gql`
 
     updateEmployer(companyName: String, email: String, password: String): Auth
     updateEmployee(firstName: String, lastName: String, department: String, role: String, password: String): Employee
+    updateCourse(_id: ID!, courseText: String, employees: [ID]): Course
 
     removeCourse(_id: ID!): Course
     removeEmployee(_id: ID!): Employee
