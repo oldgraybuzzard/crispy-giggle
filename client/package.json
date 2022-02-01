@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.5.8",
+    "@stripe/stripe-js": "^1.22.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "dotenv": "^14.3.2",
     "emailjs-com": "^3.2.0",
+    "jwt-decode": "^3.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-dotenv": "^0.1.3",
@@ -42,8 +45,8 @@
       "last 1 safari version"
     ]
   },
-  "react-dotenv":{
-    "whitelist":[
+  "react-dotenv": {
+    "whitelist": [
       "serviceId",
       "templateId",
       "userId"
