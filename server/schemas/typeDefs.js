@@ -62,6 +62,7 @@ const typeDefs = gql`
     addCourse(courseText: String!, employees: ID): Course
 
     updateEmployer(companyName: String, email: String, password: String): Auth
+    updateEmployee(firstName: String, lastName: String, department: String, role: String, password: String): Employee
 
     removeCourse(_id: ID!): Course
     removeEmployee(_id: ID!): Employee
@@ -70,3 +71,9 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
+
+// firstName: String
+// lastName: String
+// email: String
+// department: String
+// role: String

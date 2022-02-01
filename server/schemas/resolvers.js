@@ -209,7 +209,6 @@ const resolvers = {
 
     // updateEmployer for the possibility of it being the companyName, email, or password
     updateEmployer: async (parents, {companyName, email, password}, context) => {
-      // console.log(companyName, email, password);
       if (context.employer) {
 
         const employer = await Employer.findByIdAndUpdate( 
@@ -224,7 +223,22 @@ const resolvers = {
       }
 
       throw new AuthenticationError('Need to be logged in!');
-    }
+    },
+    // updateEmployee for the possibility of it being the
+    // firstName, lastName, email, department, role, or password
+    updateEmployee: async (parents,{firstName, lastName, email, department, role, password}, context) => {
+      if (context.employer) {
+        const employee = await Employee.findOneAndUpdate( 
+          email, 
+          {firstName: firstName, lastName: lastName, email: email, department: department, role: role, password: password},
+          {new: true}
+        ).populate('employerId').populate('courses');
+
+        return employee;
+      }
+
+      throw new AuthenticationError('Need to be logged in!');
+    },
   }
 };
 
