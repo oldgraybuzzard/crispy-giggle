@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from 'react';
+import React, { useContext } from 'react';
 
 import Input from '../components/FormElements/Input';
 import Button from '../components/FormElements/Button';
@@ -8,9 +8,11 @@ import {
   VALIDATOR_REQUIRE,
 } from '../utils/formValidators';
 import { useForm } from '../hooks/form-hook';
+import { LoginContext } from '../context/login-context';
 import './FormStyles.css';
 
 const Login = () => {
+  const login = useContext(LoginContext);
   const [formState, inputHandler] = useForm(
     {
       email: {
@@ -28,6 +30,7 @@ const Login = () => {
   const loginSubmitHandler = event => {
     event.preventDefault();
     console.log(formState.inputs); // send this to the backend!
+    login.login();
   };
 
   return (

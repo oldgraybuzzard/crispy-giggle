@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+
 import Modal from '../Modal';
 import Button from '../FormElements/Button';
 import EmployerSignup from '../../pages/EmployerSignup';
 import Login from '../../pages/Login';
-function Header(props) {
+import { LoginContext } from '../../context/login-context';
+
+const Header = props => {
+  const login = useContext(LoginContext);
+
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
 
@@ -37,20 +42,25 @@ function Header(props) {
           <Login />
         </div>
       </Modal>
+
       <header className="flex-row px-1 header-style">
-        <h2> Crispy Gigglers</h2>
-        <nav>
-          <ul className="flex-row">
+        <ul className="flex-row">
+          <li>
+            <h2>Crispy Gigglers</h2>
+          </li>
+          {!login.isLoggedIn && (
             <li className="mx-2">
               <p onClick={openModalHandler}> Employer Signup</p>
             </li>
+          )}
+          {!login.isLoggedIn && (
             <li className="mx-2">
               <p onClick={openModalHandler2}> Login </p>
             </li>
-          </ul>
-        </nav>
+          )}
+        </ul>
       </header>
     </>
   );
-}
+};
 export default Header;
