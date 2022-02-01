@@ -209,12 +209,12 @@ const resolvers = {
 
     // updateEmployer for the possibility of it being the companyName, email, or password
     updateEmployer: async (parents, {companyName, email, password}, context) => {
+      // console.log(companyName, email, password);
       if (context.employer) {
+
         const employer = await Employer.findByIdAndUpdate( 
-          { _id: context.employer._id }, 
-          { companyName: companyName }, 
-          { email: email }, 
-          { password: password },
+          context.employer._id, 
+          { companyName: companyName, email: email, password: password },
           {new: true}
         ).populate('employees').populate('courses');
 
