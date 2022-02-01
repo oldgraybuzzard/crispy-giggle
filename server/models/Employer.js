@@ -2,17 +2,13 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { Schema, model } = mongoose;
 
-const employeeSchema = new Schema(
+const employerSchema = new Schema(
     {
-        firstName: {
-            type: String, 
-            required: true,
-            trim: true
-        },
-        lastName: {
+        companyName: {
             type: String,
             required: true,
-            trim: true
+            trim: true,
+            unique: true
         },
         email: {
             type: String,
@@ -24,36 +20,28 @@ const employeeSchema = new Schema(
             required: true,
             minlength: 6
         },
-        department: {
-            type: String,
-            required: true,
-        },
-        role: {
-            type: String,
-            trim: true
-        },
-        employerId: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Employer',
-            }
-        ],
         courses: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Course'
+                ref: 'Course',
+            }
+        ],
+        employees: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Employee'
             }
         ]
     },
     {
         toJSON: {
-            getters: true
+            virtuals: true
         }
     }
 );
 
 // set up pre-save middleware to create password
-employeeSchema.pre('save', async function(next) {
+employerSchema.pre('save', async function(next) {
     if (this.isNew || this.isModified('password')) {
       const saltRounds = 10;
       this.password = await bcrypt.hash(this.password, saltRounds);
@@ -63,11 +51,10 @@ employeeSchema.pre('save', async function(next) {
   });
 
 // compare the incoming password with the hashed password
-employeeSchema.methods.isCorrectPassword = async function(password) {
+employerSchema.methods.isCorrectPassword = async function(password) {
     return await bcrypt.compare(password, this.password);
 };
 
+const Employer = model('Employer', employerSchema);
 
-const Employee = model('Employee', employeeSchema);
-
-module.exports = Employee;
+module.exports = Employer;
