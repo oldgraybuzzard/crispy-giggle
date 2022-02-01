@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-
+import React from 'react';
+import { useMutation } from '@apollo/client';
+import { EMPLOYER_LOGIN } from '../utils/mutations';
 import Input from '../components/FormElements/Input';
 import Button from '../components/FormElements/Button';
 import {
@@ -25,6 +26,8 @@ const Login = () => {
     },
     false
   );
+
+  const [employerLogin, { error }] = useMutation(EMPLOYER_LOGIN);
 
   const loginSubmitHandler = async event => {
     event.preventDefault();
@@ -57,27 +60,30 @@ const Login = () => {
   };
 
   return (
-    <form className="login-form" onSubmit={loginSubmitHandler}>
-      <Input
-        id="email"
-        element="input"
-        label="Email"
-        validators={[VALIDATOR_REQUIRE(), VALIDATOR_EMAIL()]}
-        errorText="Please enter a valid email."
-        onInput={inputHandler}
-      />
-      <Input
-        id="password"
-        element="input"
-        label="Password"
-        validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(5)]}
-        errorText="Please enter a valid password."
-        onInput={inputHandler}
-      />
-      <Button type="submit" disabled={!formState.isValid}>
-        Submit
-      </Button>
-    </form>
+    <div>
+      <form className="login-form" onSubmit={loginSubmitHandler}>
+        <Input
+          id="email"
+          element="input"
+          label="Email"
+          validators={[VALIDATOR_REQUIRE(), VALIDATOR_EMAIL()]}
+          errorText="Please enter a valid email."
+          onInput={inputHandler}
+        />
+        <Input
+          id="password"
+          element="input"
+          label="Password"
+          validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(5)]}
+          errorText="Please enter a valid password."
+          onInput={inputHandler}
+        />
+        <Button type="submit" disabled={!formState.isValid}>
+          Submit
+        </Button>
+      </form>
+      {error && <div>Login failed</div>}
+    </div>
   );
 };
 

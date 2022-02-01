@@ -6,7 +6,6 @@ export const EMPLOYER_LOGIN = gql`
       token
       employer {
         _id
-        email
       }
     }
   }
@@ -18,18 +17,13 @@ export const EMPLOYEE_LOGIN = gql`
       token
       employee {
         _id
-        email
       }
     }
   }
 `;
 
 export const ADD_EMPLOYER = gql`
-  mutation AddEmployer(
-    $companyName: String!
-    $email: String!
-    $password: String!
-  ) {
+  mutation AddEmployer($companyName: String!, $email: String!, $password: String!) {
     addEmployer(companyName: $companyName, email: $email, password: $password) {
       token
       employer {
