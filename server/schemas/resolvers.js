@@ -1,6 +1,7 @@
 const { Employer, Employee, Course } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const { populate } = require('../models/Employer');
 
 const resolvers = {
   Query: {
@@ -9,8 +10,28 @@ const resolvers = {
       if (context.employer) {
         const employerUserData = await Employer.findOne({ _id: context.employer._id })
           .select('-__v -password')
-          .populate('employees')
-          .populate('courses');
+          .populate({
+            path: 'employees',
+            populate: {
+              path: 'employerId',
+              model: 'Employer'
+            },
+            populate: {
+              path: 'courses',
+              model: 'Course'
+            }
+          })
+          .populate({
+            path: 'courses',
+            populate: {
+              path: 'employer',
+              model: 'Employer'
+            },
+            populate: {
+              path: 'employees',
+              model: 'Employee'
+            }
+          });
 
         return employerUserData;
       }
@@ -21,15 +42,55 @@ const resolvers = {
     employer: async(parents, { companyName }) => {
       return await Employer.findOne({ companyName: companyName })
         .select('-__v -password')
-        .populate('employees')
-        .populate('courses');
+        .populate({
+          path: 'employees',
+          populate: {
+            path: 'employerId',
+            model: 'Employer'
+          },
+          populate: {
+            path: 'courses',
+            model: 'Course'
+          }
+        })
+        .populate({
+          path: 'courses',
+          populate: {
+            path: 'employer',
+            model: 'Employer'
+          },
+          populate: {
+            path: 'employees',
+            model: 'Employee'
+          }
+        });
     },
     // get all employer
     employers: async () => {
       return await Employer.find()
         .select('-__v')
-        .populate('employees')
-        .populate('courses');
+        .populate({
+          path: 'employees',
+          populate: {
+            path: 'employerId',
+            model: 'Employer'
+          },
+          populate: {
+            path: 'courses',
+            model: 'Course'
+          }
+        })
+        .populate({
+          path: 'courses',
+          populate: {
+            path: 'employer',
+            model: 'Employer'
+          },
+          populate: {
+            path: 'employees',
+            model: 'Employee'
+          }
+        });
     },
 
     // get logged in employee
@@ -215,7 +276,28 @@ const resolvers = {
           context.employer._id, 
           { companyName: companyName, email: email, password: password },
           { new: true, runValidators: true }
-        ).populate('employees').populate('courses');
+        ).populate({
+          path: 'employees',
+          populate: {
+            path: 'employerId',
+            model: 'Employer'
+          },
+          populate: {
+            path: 'courses',
+            model: 'Course'
+          }
+        })
+        .populate({
+          path: 'courses',
+          populate: {
+            path: 'employer',
+            model: 'Employer'
+          },
+          populate: {
+            path: 'employees',
+            model: 'Employee'
+          }
+        });
 
         const token = signToken(employer);
 
@@ -232,7 +314,15 @@ const resolvers = {
           email, 
           {firstName: firstName, lastName: lastName, email: email, department: department, role: role, password: password},
           { new: true, runValidators: true }
-        ).populate('employerId').populate('courses');
+        )
+          .populate('employerId')
+          .populate({
+            path: 'courses',
+            populate: {
+              path: 'employes',
+              model: 'Employee'
+            }
+          });
 
         return employee;
       }

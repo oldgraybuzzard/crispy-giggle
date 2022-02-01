@@ -3,6 +3,13 @@ const dateFormat = require ('../utils/dateFormatter');
 
 const courseSchema = new Schema(
     {
+        courseTitle: {
+            type: String,
+            required: "You haven't entered any course material!",
+            minlength: 1,
+            // maxlength can change just leaving it here for now.
+            maxlength: 50
+        },
         courseText: {
             type: String,
             required: "You haven't entered any course material!",
