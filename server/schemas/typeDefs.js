@@ -42,17 +42,27 @@ const typeDefs = gql`
 
   type Query {
     employerMe: Employer
+    employer(companyName: String!): Employer
     employers: [Employer]
+
     employeeMe: Employee
+    employee(_id: ID!): Employee
+
     courses: [Course]
+    course(_id: ID!): Course
   }
 
   type Mutation {
     addEmployer(companyName: String!, email: String!, password: String!): Auth
     employerLogin(email: String!, password: String!): Auth
+
     addEmployee(firstName: String!, lastName: String!, email: String!, password: String!, department: String!, role: String!): Employee
     employeeLogin(email: String!, password: String!): EmployeeAuth
+
     addCourse(courseText: String!, employees: ID): Course
+
+    updateEmployer(companyName: String, email: String, password: String): Auth
+
     removeCourse(_id: ID!): Course
     removeEmployee(_id: ID!): Employee
     removeEmployer(_id: ID!): Employer

@@ -17,15 +17,25 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    // get employer by companyName
+    employer: async(parents, { companyName }) => {
+      return await Employer.findOne({ companyName: companyName })
+        .select('-__v -password')
+        .populate('employees')
+        .populate('courses');
+    },
     // get all employer
     employers: async () => {
-      return Employer.find()
+      return await Employer.find()
         .select('-__v')
         .populate('employees')
         .populate('courses');
     },
+
     // get logged in employee
     employeeMe: async (parents, args, context) => {
+      // This is actually after the employee login. 
+      // Employer in this case is representing employee
       if (context.employer) {
         const employeeUserData = await Employee.findOne({ _id: context.employer._id })
           .select('-__v -password')
@@ -37,10 +47,27 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    // get an employee by their _id if the employer is logged in.
+    employee: async (parents, { _id }, context) => {
+      if (context.employer) {
+        return Employee.findOne({ _id: _id, employerId: context.employer._id })
+          .populate('employerId')
+          .populate('courses');
+      }
+
+      throw new AuthenticationError('You must be logged in!');
+    },
+
     // get all courses
     courses: async () => {
       return Course.find()
         .select('-__v')
+        .populate('employer')
+        .populate('employees');
+    },
+    // get course by _id
+    course: async (parents, { _id }) => {
+      return Course.findOne({ _id: _id })
         .populate('employer')
         .populate('employees');
     }
@@ -110,6 +137,7 @@ const resolvers = {
 
       return { token, employee };
     },
+
     // add course by employer
     addCourse: async (parent, args, context) => {
       if (context.employer) {
@@ -135,6 +163,7 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
+
     // remove course
     removeCourse: async (parent, { _id } , context) => {
       if (context.employer) {
@@ -177,6 +206,25 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    // updateEmployer for the possibility of it being the companyName, email, or password
+    updateEmployer: async (parents, {companyName, email, password}, context) => {
+      if (context.employer) {
+        const employer = await Employer.findByIdAndUpdate( 
+          { _id: context.employer._id }, 
+          { companyName: companyName }, 
+          { email: email }, 
+          { password: password },
+          {new: true}
+        ).populate('employees').populate('courses');
+
+        const token = signToken(employer);
+
+        return { token, employer };
+      }
+
+      throw new AuthenticationError('Need to be logged in!');
+    }
   }
 };
 
