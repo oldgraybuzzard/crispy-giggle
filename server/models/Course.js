@@ -16,7 +16,7 @@ const courseSchema = new Schema({
     },
     employer: {
         type: String,
-        required: true
+        required: true,
     },
     employees: [
         {
@@ -27,6 +27,4 @@ const courseSchema = new Schema({
 });
 
 
-const Course = model('Course', courseSchema);
-
-module.exports = Course;
+module.exports = courseSchema;
