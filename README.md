@@ -5,7 +5,11 @@ Run `npm i` to install [npm](https://www.npmjs.com/) dependencies! 🎉
 
 
 ## 📖 Project 
-
+```
+AS AN employer
+I WANT to enroll employees in training courses 
+SO THAT they can stay updated with training required for the job
+```
 
 ## ⚙️ Commands & Options
 
