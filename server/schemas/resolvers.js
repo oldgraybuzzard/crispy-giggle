@@ -214,7 +214,7 @@ const resolvers = {
         const employer = await Employer.findByIdAndUpdate( 
           context.employer._id, 
           { companyName: companyName, email: email, password: password },
-          {new: true}
+          { new: true, runValidators: true }
         ).populate('employees').populate('courses');
 
         const token = signToken(employer);
@@ -231,7 +231,7 @@ const resolvers = {
         const employee = await Employee.findOneAndUpdate( 
           email, 
           {firstName: firstName, lastName: lastName, email: email, department: department, role: role, password: password},
-          {new: true}
+          { new: true, runValidators: true }
         ).populate('employerId').populate('courses');
 
         return employee;
@@ -245,7 +245,8 @@ const resolvers = {
       if (context.employer) {
         const course = await Course.findByIdAndUpdate(
           _id,
-          {courseText: courseText, $addToSet: {employees: employees}}
+          {courseText: courseText, $addToSet: {employees: employees}},
+          { new: true }
         ).populate('employer').populate('employees');
 
         return course;

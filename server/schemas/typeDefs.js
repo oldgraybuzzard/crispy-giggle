@@ -6,7 +6,6 @@ const typeDefs = gql`
     _id: ID
     companyName: String
     email: String
-    password: String
     employees: [Employee]
     courses: [Course]
   }
