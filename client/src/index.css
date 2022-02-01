@@ -11,8 +11,6 @@ body {
 /* Footer design by Chris */
 
 .foot-Container {
-  /* This container can be reused whereever needed */
-  /* Margin top can be took away only putting there for now to place it correctly */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
