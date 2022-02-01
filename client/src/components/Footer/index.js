@@ -1,4 +1,6 @@
 import React from 'react';
+import Contact from '../ContactUs';
+
 
 function Footer() {
     function fullYear() {
@@ -6,10 +8,14 @@ function Footer() {
         return yearFormat.getFullYear();
     };
 
+    const Modal = Contact
+    const [open, setOpen] = React.useState(false)
+
     return (
         <footer className='foot-Container'>
             <h2 className='copyright'>&copy; <span>{fullYear()}</span> Crispy Gigglers</h2>
-            <a href='/' className='footer-contact'>Contact Us</a>
+            <Modal />          
+           
         </footer>
     );
 };

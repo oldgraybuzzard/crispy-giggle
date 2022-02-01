@@ -1,0 +1,20 @@
+.ui.modal {
+  background-color: #AFB3F7;
+}
+
+.content {
+  color: #242423;
+}
+
+.ui.header {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+input.form-control {
+  font-size: 1rem;
+}
+
+textarea.form-control {
+  font-size: 1rem;
+}
