@@ -18,7 +18,7 @@ const courseSchema = new Schema(
         employer: [
             {
                 type: Schema.Types.ObjectId,
-                required: 'Employer',
+                ref: 'Employer',
             }
         ],
         employees: [

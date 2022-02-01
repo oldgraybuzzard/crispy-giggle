@@ -82,7 +82,7 @@ const resolvers = {
           { $push: { employees: employee._id }},
           { new: true, runValidators: true }
         )
-          .populate('employerId')
+          .populate('employees')
           .populate('courses');
 
         return employee;
@@ -92,7 +92,7 @@ const resolvers = {
     },
     // employee login
     employeeLogin: async (parent, { email, password }) => {
-      const employee = await Employee.findOne({ email });
+      const employee = await Employee.findOne({ email }).populate('employerId').populate('courses');
 
       if (!employee) {
         console.log("The employee is " + employee);
@@ -120,20 +120,15 @@ const resolvers = {
           { _id: context.employer._id },
           { $push: { courses: course._id }},
           { new: true, runValidators: true }
-        )
-          .populate('employees')
-          .populate('courses');
+        );
         // update employee with new course
         if (args.employee) {
           await Employee.findByIdAndUpdate(
             { _id: args.employees },
             { $push: { courses: course._id }},
             { new: true, runValidators: true }
-          )
-            .populate('employerId')
-            .populate('courses');
+          );
         }
-        
 
         return course;
       }
