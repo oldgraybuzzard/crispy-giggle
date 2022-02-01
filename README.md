@@ -1,9 +1,7 @@
- [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react)[![npm version](https://badge.fury.io/js/graphql.svg)](https://badge.fury.io/js/graphql)
+ [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react)[![npm version](https://badge.fury.io/js/graphql.svg)](https://badge.fury.io/js/graphql)(https://img.shields.io/github/contributors/oldgraybuzzard/cripsy-giggle)](https://github.com/oldgraybuzzard/cripsy-giggle/graphs/contributors) 
 
 ## ⚡️ Quick start
-
-
-That's all you need to know to start! 🎉
+Run `npm i` to install [npm](https://www.npmjs.com/) dependencies! 🎉
 
 
 ## 📖 Project 
