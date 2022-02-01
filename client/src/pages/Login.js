@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 
 import Input from '../components/FormElements/Input';
 import Button from '../components/FormElements/Button';
@@ -8,11 +8,10 @@ import {
   VALIDATOR_REQUIRE,
 } from '../utils/formValidators';
 import { useForm } from '../hooks/form-hook';
-import { LoginContext } from '../context/login-context';
 import './FormStyles.css';
+import Auth from '../utils/auth';
 
 const Login = () => {
-  const login = useContext(LoginContext);
   const [formState, inputHandler] = useForm(
     {
       email: {
@@ -27,10 +26,34 @@ const Login = () => {
     false
   );
 
-  const loginSubmitHandler = event => {
+  const loginSubmitHandler = async event => {
     event.preventDefault();
     console.log(formState.inputs); // send this to the backend!
-    login.login();
+
+    try {
+      const { data } = await loginSubmitHandler({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.log(e);
+    }
+
+    // clear form values
+    inputHandler(
+      {
+        email: {
+          value: '',
+          isValid: false,
+        },
+        password: {
+          value: '',
+          isValid: false,
+        },
+      },
+      false
+    );
   };
 
   return (

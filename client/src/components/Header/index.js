@@ -4,11 +4,8 @@ import Modal from '../Modal';
 import Button from '../FormElements/Button';
 import EmployerSignup from '../../pages/EmployerSignup';
 import Login from '../../pages/Login';
-import { LoginContext } from '../../context/login-context';
 
 const Header = props => {
-  const login = useContext(LoginContext);
-
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
 
@@ -48,16 +45,12 @@ const Header = props => {
           <li>
             <h2>Crispy Gigglers</h2>
           </li>
-          {!login.isLoggedIn && (
-            <li className="mx-2">
-              <p onClick={openModalHandler}> Employer Signup</p>
-            </li>
-          )}
-          {!login.isLoggedIn && (
-            <li className="mx-2">
-              <p onClick={openModalHandler2}> Login </p>
-            </li>
-          )}
+          <li className="mx-2">
+            <p onClick={openModalHandler}> Employer Signup</p>
+          </li>
+          <li className="mx-2">
+            <p onClick={openModalHandler2}> Login </p>
+          </li>
         </ul>
       </header>
     </>
