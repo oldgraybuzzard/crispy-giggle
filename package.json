@@ -23,5 +23,8 @@
     "url": "https://github.com/oldgraybuzzard/crispy-giggle/issues"
   },
   "homepage": "https://github.com/oldgraybuzzard/crispy-giggle#readme",
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongo": "^0.1.0"
+  }
 }
