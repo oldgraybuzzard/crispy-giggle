@@ -6,8 +6,9 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import EmployerDashboard from './components/EmployerDashBoard';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import './index.css';
@@ -36,6 +37,7 @@ function App() {
     <ApolloProvider client={client}>
       <div>
         <Header />
+        <EmployerDashboard />
         <Footer />
       </div>
     </ApolloProvider>

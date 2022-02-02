@@ -65,3 +65,24 @@ h2 {
 }
 
 /* Footer design ends */
+
+/* EmployerDashboard design Chris */
+
+.empr-course-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.center-objs {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.empr-btns {
+  width: 10rem;
+}
+
+/* Employer Dasboard design ends */
