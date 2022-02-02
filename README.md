@@ -17,6 +17,8 @@ I WANT to enroll employees in training courses
 SO THAT they can stay updated with training required for the job
 ```
 
+This training application is intended to serve as a full-stack JavaScript application. The stack is made of MongoDB, Express, React, Redux and React.
+
 ## ⚙️ Commands & Options
 
 ### `create`
