@@ -49,3 +49,11 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_EMPLOYEE = gql`
+  mutation addEmployee(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+  )
+`;
