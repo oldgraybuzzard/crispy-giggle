@@ -1,15 +1,19 @@
 const db = require('./connection');
 const { Course, Employee, Employer, User } = require('../models');
+const { findById, findByIdAndUpdate } = require('../models/Employer');
 
 db.once('open', async () => {
-  //seeds for Employer
+  await Employee.deleteMany();
+  await Course.deleteMany();
   await Employer.deleteMany();
-
+  
+  
+  //seeds for Employer  
   const employers = await Employer.insertMany([
     {
       companyName: 'Company A',
       email: 'companya@test.com',
-      password: 'test12345'
+      password: 'test12345',
     },
     {
       companyName: 'Company B',
@@ -29,9 +33,7 @@ db.once('open', async () => {
   ]);
   console.log('employers seeded');
   
-  //seeds for Course
-  await Course.deleteMany();
-
+  //seeds for Course  
   const trainingCourse = await Course.insertMany([
     { 
       courseTitle: 'Course A',
@@ -58,12 +60,10 @@ db.once('open', async () => {
   console.log('courses seeded');
 
   //seeds for Employee
-  await Employee.deleteMany();
-
   const employee = await Employee.insertMany([
     {
       firstName: 'John',
-      lastName: 'Tester',
+      lastName: 'Tester1',
       email: 'johndtester@compa.com',
       password: 'test12345',
       department: 'Operations',
@@ -76,7 +76,7 @@ db.once('open', async () => {
     },
     {
       firstName: 'James',
-      lastName: 'Tester',
+      lastName: 'Tester2',
       email: 'jamesdtester@compb.com',
       password: 'test12345',
       department: 'Production',
@@ -89,7 +89,7 @@ db.once('open', async () => {
     },
     {
       firstName: 'Luther',
-      lastName: 'Tester',
+      lastName: 'Tester3',
       email: 'lutherdtester@compc.com',
       password: 'test12345',
       department: 'Manufacturing',
@@ -102,7 +102,7 @@ db.once('open', async () => {
     },
     {
       firstName: 'Jane',
-      lastName: 'Tester',
+      lastName: 'Tester4',
       email: 'janedtester@compd.com',
       password: 'test12345',
       department: 'Engineering',
@@ -115,7 +115,7 @@ db.once('open', async () => {
     },
     {
       firstName: 'July',
-      lastName: 'Tester',
+      lastName: 'Tester5',
       email: 'julydtester@compa.com',
       password: 'test12345',
       department: 'Engineering',
@@ -127,6 +127,32 @@ db.once('open', async () => {
       ]
     }
   ]);
+  console.log('employees seeded');
+
+  // update courses and employer files seeded earlier
+
+  //employer updated
+  await Employer.updateOne({ _id: employers[0]}, {$addToSet: {employees: employee[0]}}); 
+  await Employer.updateOne({ _id: employers[0]}, {$addToSet: {courses: trainingCourse[0]}});
+  await Employer.updateOne({ _id: employers[1]}, {$addToSet: {employees: employee[1]}}); 
+  await Employer.updateOne({ _id: employers[1]}, {$addToSet: {courses: trainingCourse[1]}});
+  await Employer.updateOne({ _id: employers[2]}, {$addToSet: {employees: employee[2]}}); 
+  await Employer.updateOne({ _id: employers[2]}, {$addToSet: {courses: trainingCourse[2]}});
+  await Employer.updateOne({ _id: employers[3]}, {$addToSet: {employees: employee[3]}}); 
+  await Employer.updateOne({ _id: employers[3]}, {$addToSet: {courses: trainingCourse[3]}});
+
+      console.log('employer seed updated');
+
+  //courses updated by id
+  await Course.updateOne({ _id: trainingCourse[0]}, {$addToSet: {employees: employee[0]}});
+  await Course.updateOne({ _id: trainingCourse[1]}, {$addToSet: {employees: employee[1]}});
+  await Course.updateOne({ _id: trainingCourse[2]}, {$addToSet: {employees: employee[2]}});
+  await Course.updateOne({ _id: trainingCourse[3]}, {$addToSet: {employees: employee[3]}});
+
+
+  console.log('course seed updated');
+
+  process.exit();
 });
 
 
