@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Modal from '../Modal';
 import Button from '../FormElements/Button';
 import EmployerSignup from '../../pages/EmployerSignup';
-import Login from '../../pages/Login';
+import EmployerLogin from '../../pages/EmployerLogin';
 
 const Header = props => {
   const [showModal, setShowModal] = useState(false);
@@ -36,7 +36,7 @@ const Header = props => {
         footer={<Button onClick={closeModalHandler2}>CLOSE</Button>}
       >
         <div className="formRender-container">
-          <Login />
+          <EmployerLogin />
         </div>
       </Modal>
 
