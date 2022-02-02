@@ -45,12 +45,54 @@ h2 {
   font-size: 2rem;
 }
 
-.header-style {
+.app-name {
+  font-size: 3rem;
+}
+
+.header-container {
+  display: flex;
   border: 1px solid white;
   border-radius: 0.5rem;
-  padding: 1.5rem 1rem;
-  font-weight: bold;
-  font-size: 1rem;
+  padding: 1.5rem 0rem;
+  flex-wrap: wrap;
+}
+
+.header-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 85%;
+  margin-left: 6rem;
+  margin-right: auto;
+}
+
+.p-header {
+  margin: 1rem;
+  display: inline-flex;
+  font-size: 1.3rem;
+}
+
+.p-header:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.a-header {
+  margin: 1rem;
+  display: inline-flex;
+  font-size: 1.3rem;
+}
+
+.a-header:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
 }
 
 .copyright {
