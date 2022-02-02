@@ -42,8 +42,8 @@
       "last 1 safari version"
     ]
   },
-  "react-dotenv":{
-    "whitelist":[
+  "react-dotenv": {
+    "whitelist": [
       "serviceId",
       "templateId",
       "userId"
