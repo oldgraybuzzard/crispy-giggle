@@ -4,7 +4,7 @@ const secret = 'supersupersecret';
 const expiration = '4h';
 
 module.exports = {
-  signToken: function({ email, _id }) {
+  signToken: function ({ email, _id }) {
     const payload = { email, _id };
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
@@ -12,9 +12,11 @@ module.exports = {
   // function for authenticated routes
   authMiddleware: function ({ req }) {
     // token can be sent via req.query, req.headers, or req.body
-    let token = req.query.token || req.headers.token || req.headers.authorization;
+    let token =
+      req.query.token || req.headers.token || req.headers.authorization;
 
-    // if token is req.headers.authorization we need to 
+    // if token is req.headers.authorization we need to
+
     // extract the token value from ["Bearer", "<tokenvalue>"]
     if (req.headers.authorization) {
       token = token
@@ -42,3 +44,4 @@ module.exports = {
     return req;
   },
 };
+

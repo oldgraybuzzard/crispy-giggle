@@ -8,29 +8,35 @@ const resolvers = {
     // get logged in employer user
     employerMe: async (parents, args, context) => {
       if (context.employer) {
-        const employerUserData = await Employer.findOne({ _id: context.employer._id })
+
+        const employerUserData = await Employer.findOne({
+          _id: context.employer._id,
+        })
+
           .select('-__v -password')
           .populate({
             path: 'employees',
             populate: {
               path: 'employerId',
-              model: 'Employer'
+              model: 'Employer',
             },
             populate: {
               path: 'courses',
-              model: 'Course'
-            }
+              model: 'Course',
+            },
+
           })
           .populate({
             path: 'courses',
             populate: {
               path: 'employer',
-              model: 'Employer'
+              model: 'Employer',
             },
             populate: {
               path: 'employees',
-              model: 'Employee'
-            }
+              model: 'Employee',
+            },
+
           });
 
         return employerUserData;
@@ -39,30 +45,33 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     // get employer by companyName
-    employer: async(parents, { companyName }) => {
+    employer: async (parents, { companyName }) => {
+
       return await Employer.findOne({ companyName: companyName })
         .select('-__v -password')
         .populate({
           path: 'employees',
           populate: {
             path: 'employerId',
-            model: 'Employer'
+            model: 'Employer',
           },
           populate: {
             path: 'courses',
-            model: 'Course'
-          }
+            model: 'Course',
+          },
+
         })
         .populate({
           path: 'courses',
           populate: {
             path: 'employer',
-            model: 'Employer'
+            model: 'Employer',
           },
           populate: {
             path: 'employees',
-            model: 'Employee'
-          }
+            model: 'Employee',
+          },
+
         });
     },
     // get all employer
@@ -73,37 +82,41 @@ const resolvers = {
           path: 'employees',
           populate: {
             path: 'employerId',
-            model: 'Employer'
+            model: 'Employer',
           },
           populate: {
             path: 'courses',
-            model: 'Course'
-          }
+            model: 'Course',
+          },
         })
         .populate({
           path: 'courses',
           populate: {
             path: 'employer',
-            model: 'Employer'
+            model: 'Employer',
           },
           populate: {
             path: 'employees',
-            model: 'Employee'
-          }
+            model: 'Employee',
+          },
         });
     },
 
     // get logged in employee
     employeeMe: async (parents, args, context) => {
-      // This is actually after the employee login. 
+      // This is actually after the employee login.
       // Employer in this case is representing employee
       if (context.employer) {
-        const employeeUserData = await Employee.findOne({ _id: context.employer._id })
+        const employeeUserData = await Employee.findOne({
+          _id: context.employer._id,
+        })
+
           .select('-__v -password')
           .populate('employerId')
           .populate('courses');
 
-          return employeeUserData;
+        return employeeUserData;
+
       }
 
       throw new AuthenticationError('Not logged in');
@@ -131,7 +144,8 @@ const resolvers = {
       return Course.findOne({ _id: _id })
         .populate('employer')
         .populate('employees');
-    }
+    },
+
   },
   Mutation: {
     // create a employer
@@ -161,13 +175,17 @@ const resolvers = {
     },
 
     // employer creates employee
-    addEmployee: async (parent, args, context ) => {
+    addEmployee: async (parent, args, context) => {
       if (context.employer) {
-        const employee = await Employee.create({ ...args , employerId: context.employer._id });
+        const employee = await Employee.create({
+          ...args,
+          employerId: context.employer._id,
+        });
 
         await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
-          { $push: { employees: employee._id }},
+          { $push: { employees: employee._id } },
+
           { new: true, runValidators: true }
         )
           .populate('employees')
@@ -180,10 +198,12 @@ const resolvers = {
     },
     // employee login
     employeeLogin: async (parent, { email, password }) => {
-      const employee = await Employee.findOne({ email }).populate('employerId').populate('courses');
+      const employee = await Employee.findOne({ email })
+        .populate('employerId')
+        .populate('courses');
 
       if (!employee) {
-        console.log("The employee is " + employee);
+        console.log('The employee is ' + employee);
         throw new AuthenticationError('Incorrect credentials');
       }
 
@@ -202,19 +222,22 @@ const resolvers = {
     // add course by employer
     addCourse: async (parent, args, context) => {
       if (context.employer) {
-        const course = await Course.create({ ...args, employer: context.employer._id });
+        const course = await Course.create({
+          ...args,
+          employer: context.employer._id,
+        });
 
         // update employer with new course
         await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
-          { $push: { courses: course._id }},
+          { $push: { courses: course._id } },
           { new: true, runValidators: true }
         );
         // update employee with new course
         if (args.employees) {
           await Employee.findByIdAndUpdate(
             { _id: args.employees },
-            { $push: { courses: course._id }},
+            { $push: { courses: course._id } },
             { new: true, runValidators: true }
           );
         }
@@ -226,16 +249,16 @@ const resolvers = {
     },
 
     // remove course
-    removeCourse: async (parent, { _id } , context) => {
+    removeCourse: async (parent, { _id }, context) => {
       if (context.employer) {
         const removedCourse = await Course.findByIdAndDelete({ _id: _id });
 
         await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
-          { $pull: { courses: _id }},
+          { $pull: { courses: _id } },
           { new: true }
         );
-      
+
         return removedCourse;
       }
 
@@ -248,10 +271,10 @@ const resolvers = {
 
         await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
-          { $pull: { courses: _id }},
+          { $pull: { courses: _id } },
           { new: true }
         );
-      
+
         return removedEmployee;
       }
 
@@ -269,35 +292,39 @@ const resolvers = {
     },
 
     // updateEmployer for the possibility of it being the companyName, email, or password
-    updateEmployer: async (parents, {companyName, email, password}, context) => {
+    updateEmployer: async (
+      parents,
+      { companyName, email, password },
+      context
+    ) => {
       if (context.employer) {
-
-        const employer = await Employer.findByIdAndUpdate( 
-          context.employer._id, 
+        const employer = await Employer.findByIdAndUpdate(
+          context.employer._id,
           { companyName: companyName, email: email, password: password },
           { new: true, runValidators: true }
-        ).populate({
-          path: 'employees',
-          populate: {
-            path: 'employerId',
-            model: 'Employer'
-          },
-          populate: {
-            path: 'courses',
-            model: 'Course'
-          }
-        })
-        .populate({
-          path: 'courses',
-          populate: {
-            path: 'employer',
-            model: 'Employer'
-          },
-          populate: {
+        )
+          .populate({
             path: 'employees',
-            model: 'Employee'
-          }
-        });
+            populate: {
+              path: 'employerId',
+              model: 'Employer',
+            },
+            populate: {
+              path: 'courses',
+              model: 'Course',
+            },
+          })
+          .populate({
+            path: 'courses',
+            populate: {
+              path: 'employer',
+              model: 'Employer',
+            },
+            populate: {
+              path: 'employees',
+              model: 'Employee',
+            },
+          });
 
         const token = signToken(employer);
 
@@ -308,11 +335,22 @@ const resolvers = {
     },
     // updateEmployee for the possibility of it being the
     // firstName, lastName, email, department, role, or password
-    updateEmployee: async (parents,{firstName, lastName, email, department, role, password}, context) => {
+    updateEmployee: async (
+      parents,
+      { firstName, lastName, email, department, role, password },
+      context
+    ) => {
       if (context.employer) {
-        const employee = await Employee.findOneAndUpdate( 
-          email, 
-          {firstName: firstName, lastName: lastName, email: email, department: department, role: role, password: password},
+        const employee = await Employee.findOneAndUpdate(
+          email,
+          {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            department: department,
+            role: role,
+            password: password,
+          },
           { new: true, runValidators: true }
         )
           .populate('employerId')
@@ -320,8 +358,8 @@ const resolvers = {
             path: 'courses',
             populate: {
               path: 'employes',
-              model: 'Employee'
-            }
+              model: 'Employee',
+            },
           });
 
         return employee;
@@ -331,20 +369,22 @@ const resolvers = {
     },
     // updateCourse for the possibility of needing to update
     // courseText or the employees array.
-    updateCourse: async (parents, {_id, courseText, employees}, context) => {
+    updateCourse: async (parents, { _id, courseText, employees }, context) => {
       if (context.employer) {
         const course = await Course.findByIdAndUpdate(
           _id,
-          {courseText: courseText, $addToSet: {employees: employees}},
+          { courseText: courseText, $addToSet: { employees: employees } },
           { new: true }
-        ).populate('employer').populate('employees');
+        )
+          .populate('employer')
+          .populate('employees');
 
         return course;
       }
 
       throw new AuthenticationError('Need to be logged in!');
-    }
-  }
+    },
+  },
 };
 
 module.exports = resolvers;

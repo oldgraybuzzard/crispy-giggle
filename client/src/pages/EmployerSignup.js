@@ -1,102 +1,80 @@
-import React, { useCallback, useReducer } from 'react';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_EMPLOYER } from '../utils/mutations';
 
-import Input from '../components/FormElements/Input';
-import Button from '../components/FormElements/Button';
-import {
-  VALIDATOR_EMAIL,
-  VALIDATOR_MINLENGTH,
-  VALIDATOR_REQUIRE,
-} from '../utils/formValidators';
+import Auth from '../utils/auth';
 import './FormStyles.css';
 
-const formReducer = (state, action) => {
-  switch (action.type) {
-    case 'INPUT_CHANGE':
-      let formIsValid = true;
-      for (const inputId in state.inputs) {
-        if (inputId === action.inputId) {
-          formIsValid = formIsValid && action.isValid;
-        } else {
-          formIsValid = formIsValid && state.inputs[inputId].isValid;
-        }
-      }
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.inputId]: { value: action.value, isValid: action.isValid },
-        },
-        isValid: formIsValid,
-      };
-    default:
-      return state;
-  }
-};
-
-const EmployerSignup = () => {
-  const [formState, dispatch] = useReducer(formReducer, {
-    inputs: {
-      companyName: {
-        value: '',
-        isValid: false,
-      },
-      email: {
-        value: '',
-        isValid: false,
-      },
-      password: {
-        value: '',
-        isValid: false,
-      },
-    },
-    isValid: false,
+const EmployerSignup = props => {
+  const [formState, setFormState] = useState({
+    companyName: '',
+    email: '',
+    password: '',
   });
 
-  const inputHandler = useCallback((id, value, isValid) => {
-    dispatch({
-      type: 'INPUT_CHANGE',
-      value: value,
-      isValid: isValid,
-      inputId: id,
-    });
-  }, []);
+  const [addEmployer, { error }] = useMutation(ADD_EMPLOYER);
 
-  const employerSubmitHandler = event => {
+  const handleChange = event => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async event => {
     event.preventDefault();
-    console.log(formState.inputs); // send this to the backend!
+
+    try {
+      const { data } = await addEmployer({
+        variables: { ...formState },
+      });
+      Auth.employerLogin(data.addEmployer.token);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
-    <form className="employer-form" onSubmit={employerSubmitHandler}>
-      <Input
-        id="companyName"
-        element="input"
-        type="text"
-        label="Company Name"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid Company Name."
-        onInput={inputHandler}
-      />
-      <Input
-        id="email"
-        element="input"
-        label="Email"
-        validators={[VALIDATOR_REQUIRE(), VALIDATOR_EMAIL()]}
-        errorText="Please enter a valid email."
-        onInput={inputHandler}
-      />
-      <Input
-        id="password"
-        element="input"
-        label="Password"
-        validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(5)]}
-        errorText="Please enter a valid password."
-        onInput={inputHandler}
-      />
-      <Button type="submit" disabled={!formState.isValid}>
-        Submit
-      </Button>
-    </form>
+    <div>
+      <form className="employer-form" onSubmit={handleFormSubmit}>
+        <h3 className="form-title-signup">Company Name:</h3>
+        <input
+          className="form-input-signup"
+          placeholer="Your company name"
+          name="companyName"
+          type="companyName"
+          id="companyName"
+          value={formState.companyName}
+          onChange={handleChange}
+        />
+        <h3 className="form-title-signup">Email:</h3>
+        <input
+          className="form-input-signup"
+          placeholder="Your email"
+          name="email"
+          type="email"
+          id="email"
+          value={formState.email}
+          onChange={handleChange}
+        />
+        <h3 className="form-title-signup">Password:</h3>
+        <input
+          className="form-input-signup"
+          placeholder="******"
+          name="password"
+          type="password"
+          id="password"
+          value={formState.password}
+          onChange={handleChange}
+        />
+        <button className="form-button-signup" type="submit">
+          Submit
+        </button>
+      </form>
+      {error && <div>Signup failed</div>}
+    </div>
   );
 };
 
