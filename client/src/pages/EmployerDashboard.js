@@ -1,12 +1,20 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import {Grid, Button} from 'semantic-ui-react';
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { EMPLOYER_ME } from "../utils/queries";
 
 const EmployerDashboard = (props) => {
   const { loading, data } = useQuery(EMPLOYER_ME);
   
+  if (loading) {
+    return (
+      <h2>Loading...</h2>
+    );
+  }
+
   const employerData = data?.employerMe || [];
+  
   return (
     <>
       <h1 className="center-objs">{employerData.companyName}</h1>
@@ -16,7 +24,7 @@ const EmployerDashboard = (props) => {
             <h2>Employees!</h2>
             <ul>
               {employerData.employees.map((employee) => (
-                  <li key={employee._id}>{employee.firstName}</li>
+                  <li key={employee._id}>{employee.firstName} {employee.lastName}</li>
                 )
               )}
             </ul>
@@ -35,9 +43,9 @@ const EmployerDashboard = (props) => {
           </Grid.Column>
 
           <Grid.Column>
-            <Button className="empr-btns">Create a Course</Button>
+            <Button className="empr-btns center-objs">Create a Course</Button>
             
-            <Button className="empr-btns">Add Employee</Button>
+            <Button as={Link} to="/add-employee" className="empr-btns center-objs">Add Employee</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
