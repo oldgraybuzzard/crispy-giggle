@@ -3,7 +3,6 @@
 [![license](https://img.shields.io/github/license/t-ho/mern-stack)](https://github.com/t-ho/mern-stack/blob/master/LICENSE)
  [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react)[![npm version](https://badge.fury.io/js/graphql.svg)](https://badge.fury.io/js/graphql)
 
-![mern-logo](https://user-images.githubusercontent.com/87583026/152078466-b3728515-cdbe-4546-840b-7b2a53dc37e1.png)
 
 
 ## ⚡️ Quick start
@@ -17,7 +16,7 @@ I WANT to enroll employees in training courses
 SO THAT they can stay updated with training required for the job
 ```
 
-This training application is intended to serve as a full-stack JavaScript application. The stack is made of MongoDB, Express, React, Redux and React.
+This training application is intended to serve as a full-stack Mern-stack application. The stack is made of MongoDB, Express, React, Redux and React.
 
 ## ⚙️ Commands & Options
 
@@ -31,9 +30,12 @@ This training application is intended to serve as a full-stack JavaScript applic
 ## 📝
 
 ### Backend
-
-
-
+ - [x] Authentication system - [jasonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+    - [x] Sign up - [bcrypt](https://www.npmjs.com/package/bcrypt)
+    - [x] Local login - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+    - [x] Email verification
+    - [x] Password verification
+    
 ### Frontend
 
 
