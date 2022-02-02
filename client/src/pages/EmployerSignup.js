@@ -30,7 +30,7 @@ const EmployerSignup = props => {
       const { data } = await addEmployer({
         variables: { ...formState },
       });
-      Auth.login(data.addEmployer.token);
+      Auth.employerLogin(data.addEmployer.token);
     } catch (e) {
       console.error(e);
     }
