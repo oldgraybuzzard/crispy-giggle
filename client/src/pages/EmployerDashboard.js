@@ -24,7 +24,7 @@ const EmployerDashboard = (props) => {
             <h2>Employees!</h2>
             <ul>
               {employerData.employees.map((employee) => (
-                  <li key={employee._id}>{employee.firstName} {employee.lastName}</li>
+                  <li key={employee._id}>{employee.firstName} {employee.lastName} {employee._id}</li>
                 )
               )}
             </ul>
@@ -43,7 +43,7 @@ const EmployerDashboard = (props) => {
           </Grid.Column>
 
           <Grid.Column>
-            <Button className="empr-btns center-objs">Create a Course</Button>
+            <Button as={Link} to="/add-course" className="empr-btns center-objs">Create a Course</Button>
             
             <Button as={Link} to="/add-employee" className="empr-btns center-objs">Add Employee</Button>
           </Grid.Column>
