@@ -35,7 +35,7 @@ const employeeSchema = new Schema(
         employerId: [
             {
                 type: Schema.Types.ObjectId,
-                required: 'Employer',
+                ref: 'Employer',
             }
         ],
         courses: [

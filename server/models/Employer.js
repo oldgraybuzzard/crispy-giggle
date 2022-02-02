@@ -23,7 +23,7 @@ const employerSchema = new Schema(
         courses: [
             {
                 type: Schema.Types.ObjectId,
-                required: 'Course',
+                ref: 'Course',
             }
         ],
         employees: [
