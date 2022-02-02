@@ -18,6 +18,7 @@ const typeDefs = gql`
     employerId: [Employer]
     courses: [Course]
   }
+  
   type Course {
     _id: ID
     courseTitle: String
@@ -26,10 +27,12 @@ const typeDefs = gql`
     employer: [Employer]
     employees: [Employee]
   }
+
   type Auth {
     token: ID!
     employer: Employer
   }
+
   type EmployeeAuth {
     token: ID!
     employee: Employee
@@ -70,6 +73,7 @@ const typeDefs = gql`
       courseText: String
       employees: [ID]
     ): Course
+
     removeCourse(_id: ID!): Course
     removeEmployee(_id: ID!): Employee
     removeEmployer(_id: ID!): Employer

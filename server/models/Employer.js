@@ -53,6 +53,7 @@ employerSchema.pre('save', async function (next) {
 // compare the incoming password with the hashed password
 employerSchema.methods.isCorrectPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
+
 };
 
 const Employer = model('Employer', employerSchema);

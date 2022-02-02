@@ -16,6 +16,7 @@ module.exports = {
       req.query.token || req.headers.token || req.headers.authorization;
 
     // if token is req.headers.authorization we need to
+
     // extract the token value from ["Bearer", "<tokenvalue>"]
     if (req.headers.authorization) {
       token = token
@@ -43,3 +44,4 @@ module.exports = {
     return req;
   },
 };
+

@@ -8,9 +8,11 @@ const resolvers = {
     // get logged in employer user
     employerMe: async (parents, args, context) => {
       if (context.employer) {
+
         const employerUserData = await Employer.findOne({
           _id: context.employer._id,
         })
+
           .select('-__v -password')
           .populate({
             path: 'employees',
@@ -22,6 +24,7 @@ const resolvers = {
               path: 'courses',
               model: 'Course',
             },
+
           })
           .populate({
             path: 'courses',
@@ -33,6 +36,7 @@ const resolvers = {
               path: 'employees',
               model: 'Employee',
             },
+
           });
 
         return employerUserData;
@@ -42,6 +46,7 @@ const resolvers = {
     },
     // get employer by companyName
     employer: async (parents, { companyName }) => {
+
       return await Employer.findOne({ companyName: companyName })
         .select('-__v -password')
         .populate({
@@ -54,6 +59,7 @@ const resolvers = {
             path: 'courses',
             model: 'Course',
           },
+
         })
         .populate({
           path: 'courses',
@@ -65,6 +71,7 @@ const resolvers = {
             path: 'employees',
             model: 'Employee',
           },
+
         });
     },
     // get all employer
@@ -103,11 +110,13 @@ const resolvers = {
         const employeeUserData = await Employee.findOne({
           _id: context.employer._id,
         })
+
           .select('-__v -password')
           .populate('employerId')
           .populate('courses');
 
         return employeeUserData;
+
       }
 
       throw new AuthenticationError('Not logged in');
@@ -136,6 +145,7 @@ const resolvers = {
         .populate('employer')
         .populate('employees');
     },
+
   },
   Mutation: {
     // create a employer
@@ -175,6 +185,7 @@ const resolvers = {
         await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
           { $push: { employees: employee._id } },
+
           { new: true, runValidators: true }
         )
           .populate('employees')

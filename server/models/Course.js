@@ -40,6 +40,7 @@ const courseSchema = new Schema(
       getters: true,
     },
   }
+
 );
 
 const Course = model('Course', courseSchema);
