@@ -1,5 +1,3 @@
-import React from 'react';
-
 import decode from 'jwt-decode';
 
 class AuthService {
