@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const { Schema, model } = mongoose;
 
 const employerSchema = new Schema(
-<<<<<<< HEAD
     {
         companyName: {
             type: String,
@@ -39,43 +38,6 @@ const employerSchema = new Schema(
             virtuals: true
         }
     }
-=======
-  {
-    companyName: {
-      type: String,
-      required: true,
-      trim: true,
-      unique: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-      minlength: 6,
-    },
-    courses: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Course',
-      },
-    ],
-    employees: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Employee',
-      },
-    ],
-  },
-  {
-    toJSON: {
-      virtuals: true,
-    },
-  }
->>>>>>> feature/forms-backend-connection
 );
 
 // set up pre-save middleware to create password

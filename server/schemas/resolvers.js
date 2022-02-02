@@ -1,7 +1,6 @@
 const { Employer, Employee, Course } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { populate } = require('../models/Employer');
 
 const resolvers = {
   Query: {
