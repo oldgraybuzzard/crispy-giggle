@@ -3,6 +3,9 @@
 [![license](https://img.shields.io/github/license/t-ho/mern-stack)](https://github.com/t-ho/mern-stack/blob/master/LICENSE)
  [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react)[![npm version](https://badge.fury.io/js/graphql.svg)](https://badge.fury.io/js/graphql)
 
+![mern-logo](https://user-images.githubusercontent.com/87583026/152078466-b3728515-cdbe-4546-840b-7b2a53dc37e1.png)
+
+
 ## ⚡️ Quick start
 Run `npm i` to install [npm](https://www.npmjs.com/) dependencies! 🎉
 
