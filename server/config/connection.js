@@ -9,3 +9,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/trainingmanagem
 });
 
 module.exports = mongoose.connection;
+

@@ -8,12 +8,16 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import EmployerDashboard from './components/EmployerDashBoard';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Homepage from './pages/Homepage';
+import EmployerDashboard from './pages/EmployerDashboard';
+import EmployeeDashboard from './pages/EmployeeDashboard';
+import NoMatch from './pages/NoMatch';
 import './index.css';
 
 const httpLink = createHttpLink({
+  // uri: '/graphql',
   uri: 'http://localhost:3001/graphql',
 });
 
@@ -28,6 +32,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
+  // link: authLink.concat(httpLink),
   link: httpLink,
   cache: new InMemoryCache(),
 });
@@ -35,11 +40,28 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div>
-        <Header />
-        <EmployerDashboard />
-        <Footer />
-      </div>
+      <Router>
+        <div>
+          <Header />
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={Homepage} />
+              <Route
+                exact
+                path="/employer-dashboard"
+                component={EmployerDashboard}
+              />
+              <Route
+                exact
+                path="/employee-dashboard"
+                component={EmployeeDashboard}
+              />
+              <Route component={NoMatch} />
+            </Switch>
+          </div>
+          <Footer />
+        </div>
+      </Router>
     </ApolloProvider>
   );
 }

@@ -30,7 +30,7 @@ const EmployerSignup = props => {
       const { data } = await addEmployer({
         variables: { ...formState },
       });
-      Auth.login(data.addEmployer.token);
+      Auth.employerLogin(data.addEmployer.token);
     } catch (e) {
       console.error(e);
     }
@@ -39,8 +39,9 @@ const EmployerSignup = props => {
   return (
     <div>
       <form className="employer-form" onSubmit={handleFormSubmit}>
+        <h3 className="form-title-signup">Company Name:</h3>
         <input
-          className="form-input"
+          className="form-input-signup"
           placeholer="Your company name"
           name="companyName"
           type="companyName"
@@ -48,8 +49,9 @@ const EmployerSignup = props => {
           value={formState.companyName}
           onChange={handleChange}
         />
+        <h3 className="form-title-signup">Email:</h3>
         <input
-          className="form-input"
+          className="form-input-signup"
           placeholder="Your email"
           name="email"
           type="email"
@@ -57,8 +59,9 @@ const EmployerSignup = props => {
           value={formState.email}
           onChange={handleChange}
         />
+        <h3 className="form-title-signup">Password:</h3>
         <input
-          className="form-input"
+          className="form-input-signup"
           placeholder="******"
           name="password"
           type="password"
@@ -66,7 +69,9 @@ const EmployerSignup = props => {
           value={formState.password}
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <button className="form-button-signup" type="submit">
+          Submit
+        </button>
       </form>
       {error && <div>Signup failed</div>}
     </div>

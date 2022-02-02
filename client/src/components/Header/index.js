@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import Auth from '../../utils/auth';
 
 import Modal from '../Modal';
 import Button from '../FormElements/Button';
 import EmployerSignup from '../../pages/EmployerSignup';
-import Login from '../../pages/Login';
+import EmployerLogin from '../../pages/EmployerLogin';
 
-const Header = props => {
+const Header = () => {
+  const logout = event => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
 
@@ -36,22 +44,37 @@ const Header = props => {
         footer={<Button onClick={closeModalHandler2}>CLOSE</Button>}
       >
         <div className="formRender-container">
-          <Login />
+          <EmployerLogin />
         </div>
       </Modal>
 
-      <header className="flex-row px-1 header-style">
-        <ul className="flex-row">
-          <li>
-            <h2>Crispy Gigglers</h2>
-          </li>
-          <li className="mx-2">
-            <p onClick={openModalHandler}> Employer Signup</p>
-          </li>
-          <li className="mx-2">
-            <p onClick={openModalHandler2}> Login </p>
-          </li>
-        </ul>
+      <header className="header-container">
+        <div className="header-div">
+          <Link to="/">
+            <h1 className="app-name">Crispy Gigglers</h1>
+          </Link>
+          <nav className="text-center">
+            {Auth.loggedIn() ? (
+              <>
+                <Link to="/employer-dashboard" className="a-header">
+                  Dashboard
+                </Link>
+                <a href="/" className="a-header" onClick={logout}>
+                  Logout
+                </a>
+              </>
+            ) : (
+              <>
+                <p className="p-header" onClick={openModalHandler}>
+                  Employer Signup
+                </p>
+                <p className="p-header" onClick={openModalHandler2}>
+                  Login
+                </p>
+              </>
+            )}
+          </nav>
+        </div>
       </header>
     </>
   );

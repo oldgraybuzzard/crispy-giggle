@@ -7,9 +7,11 @@ const resolvers = {
     // get logged in employer user
     employerMe: async (parents, args, context) => {
       if (context.employer) {
+
         const employerUserData = await Employer.findOne({
           _id: context.employer._id,
         })
+
           .select('-__v -password')
           .populate({
             path: 'employees',
@@ -107,6 +109,7 @@ const resolvers = {
           .populate('courses');
 
         return employeeUserData;
+
       }
 
       throw new AuthenticationError('Not logged in');
