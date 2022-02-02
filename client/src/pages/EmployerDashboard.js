@@ -7,7 +7,6 @@ const EmployerDashboard = (props) => {
   const { loading, data } = useQuery(EMPLOYER_ME);
   
   const employerData = data?.employerMe || [];
-
   return (
     <>
       <h1 className="center-objs">{employerData.companyName}</h1>
@@ -37,6 +36,7 @@ const EmployerDashboard = (props) => {
 
           <Grid.Column>
             <Button className="empr-btns">Create a Course</Button>
+            
             <Button className="empr-btns">Add Employee</Button>
           </Grid.Column>
         </Grid.Row>
