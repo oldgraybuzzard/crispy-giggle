@@ -34,7 +34,6 @@ SO THAT they can stay updated with training required for the job
 ### Technical Acceptance Criteria: 25%
 Satisfies all of the preceding acceptance criteria plus the following:
 
-```
 ✅ Application uses React for the front end.
 ✅Application has a GraphQL API with a Node.js and Express.js server and uses queries and mutations for retrieving, adding, updating, and deleting data.
 ✅ Application uses MongoDB and the Mongoose ODM for the database and protects sensitive API key information on the server.
