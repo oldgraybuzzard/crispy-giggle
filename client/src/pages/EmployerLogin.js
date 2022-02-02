@@ -42,6 +42,7 @@ const EmployerLogin = props => {
 
   return (
     <div>
+      <h3 className="form-title">Email:</h3>
       <form className="login-form" onSubmit={handleFormSubmit}>
         <input
           className="form-input"
@@ -52,6 +53,7 @@ const EmployerLogin = props => {
           value={formState.email}
           onChange={handleChange}
         />
+        <h3 className="form-title">Password:</h3>
         <input
           className="form-input"
           placeholder="******"
@@ -61,7 +63,9 @@ const EmployerLogin = props => {
           value={formState.password}
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <button className="form-button" type="submit">
+          Submit
+        </button>
       </form>
       {error && <div>Login failed</div>}
     </div>
