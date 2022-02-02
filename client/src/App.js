@@ -13,6 +13,7 @@ import Header from './components/Header';
 import Homepage from './pages/Homepage';
 import EmployerDashboard from './pages/EmployerDashboard';
 import EmployeeDashboard from './pages/EmployeeDashboard';
+import AddEmployee from './pages/AddEmployee';
 import NoMatch from './pages/NoMatch';
 import './index.css';
 
@@ -32,8 +33,8 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  // link: authLink.concat(httpLink),
-  link: httpLink,
+  link: authLink.concat(httpLink),
+  // link: httpLink,
   cache: new InMemoryCache(),
 });
 
@@ -55,6 +56,11 @@ function App() {
                 exact
                 path="/employee-dashboard"
                 component={EmployeeDashboard}
+              />
+              <Route 
+                exact
+                path="/add-employee"
+                component={AddEmployee}
               />
               <Route component={NoMatch} />
             </Switch>
