@@ -8,29 +8,49 @@ const resolvers = {
     // get logged in employer user
     employerMe: async (parents, args, context) => {
       if (context.employer) {
-        const employerUserData = await Employer.findOne({ _id: context.employer._id })
+        const employerUserData = await Employer.findOne({
+          _id: context.employer._id,
+        })
           .select('-__v -password')
           .populate({
             path: 'employees',
             populate: {
               path: 'employerId',
+<<<<<<< HEAD
               model: 'Employer'
             },
             populate: {
               path: 'courses',
               model: 'Course'
             }
+=======
+              model: 'Employer',
+            },
+            populate: {
+              path: 'courses',
+              model: 'Course',
+            },
+>>>>>>> feature/forms-backend-connection
           })
           .populate({
             path: 'courses',
             populate: {
               path: 'employer',
+<<<<<<< HEAD
               model: 'Employer'
             },
             populate: {
               path: 'employees',
               model: 'Employee'
             }
+=======
+              model: 'Employer',
+            },
+            populate: {
+              path: 'employees',
+              model: 'Employee',
+            },
+>>>>>>> feature/forms-backend-connection
           });
 
         return employerUserData;
@@ -39,30 +59,52 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     // get employer by companyName
+<<<<<<< HEAD
     employer: async(parents, { companyName }) => {
+=======
+    employer: async (parents, { companyName }) => {
+>>>>>>> feature/forms-backend-connection
       return await Employer.findOne({ companyName: companyName })
         .select('-__v -password')
         .populate({
           path: 'employees',
           populate: {
             path: 'employerId',
+<<<<<<< HEAD
             model: 'Employer'
           },
           populate: {
             path: 'courses',
             model: 'Course'
           }
+=======
+            model: 'Employer',
+          },
+          populate: {
+            path: 'courses',
+            model: 'Course',
+          },
+>>>>>>> feature/forms-backend-connection
         })
         .populate({
           path: 'courses',
           populate: {
             path: 'employer',
+<<<<<<< HEAD
             model: 'Employer'
           },
           populate: {
             path: 'employees',
             model: 'Employee'
           }
+=======
+            model: 'Employer',
+          },
+          populate: {
+            path: 'employees',
+            model: 'Employee',
+          },
+>>>>>>> feature/forms-backend-connection
         });
     },
     // get all employer
@@ -73,37 +115,64 @@ const resolvers = {
           path: 'employees',
           populate: {
             path: 'employerId',
+<<<<<<< HEAD
             model: 'Employer'
           },
           populate: {
             path: 'courses',
             model: 'Course'
           }
+=======
+            model: 'Employer',
+          },
+          populate: {
+            path: 'courses',
+            model: 'Course',
+          },
+>>>>>>> feature/forms-backend-connection
         })
         .populate({
           path: 'courses',
           populate: {
             path: 'employer',
+<<<<<<< HEAD
             model: 'Employer'
           },
           populate: {
             path: 'employees',
             model: 'Employee'
           }
+=======
+            model: 'Employer',
+          },
+          populate: {
+            path: 'employees',
+            model: 'Employee',
+          },
+>>>>>>> feature/forms-backend-connection
         });
     },
 
     // get logged in employee
     employeeMe: async (parents, args, context) => {
+<<<<<<< HEAD
       // This is actually after the employee login. 
       // Employer in this case is representing employee
       if (context.employer) {
         const employeeUserData = await Employee.findOne({ _id: context.employer._id })
+=======
+      // This is actually after the employee login.
+      // Employer in this case is representing employee
+      if (context.employer) {
+        const employeeUserData = await Employee.findOne({
+          _id: context.employer._id,
+        })
+>>>>>>> feature/forms-backend-connection
           .select('-__v -password')
           .populate('employerId')
           .populate('courses');
 
-          return employeeUserData;
+        return employeeUserData;
       }
 
       throw new AuthenticationError('Not logged in');
@@ -131,7 +200,11 @@ const resolvers = {
       return Course.findOne({ _id: _id })
         .populate('employer')
         .populate('employees');
+<<<<<<< HEAD
     }
+=======
+    },
+>>>>>>> feature/forms-backend-connection
   },
   Mutation: {
     // create a employer
@@ -161,13 +234,20 @@ const resolvers = {
     },
 
     // employer creates employee
-    addEmployee: async (parent, args, context ) => {
+    addEmployee: async (parent, args, context) => {
       if (context.employer) {
-        const employee = await Employee.create({ ...args , employerId: context.employer._id });
+        const employee = await Employee.create({
+          ...args,
+          employerId: context.employer._id,
+        });
 
         await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
+<<<<<<< HEAD
           { $push: { employees: employee._id }},
+=======
+          { $push: { employees: employee._id } },
+>>>>>>> feature/forms-backend-connection
           { new: true, runValidators: true }
         )
           .populate('employees')
@@ -180,10 +260,16 @@ const resolvers = {
     },
     // employee login
     employeeLogin: async (parent, { email, password }) => {
+<<<<<<< HEAD
       const employee = await Employee.findOne({ email }).populate('employerId').populate('courses');
+=======
+      const employee = await Employee.findOne({ email })
+        .populate('employerId')
+        .populate('courses');
+>>>>>>> feature/forms-backend-connection
 
       if (!employee) {
-        console.log("The employee is " + employee);
+        console.log('The employee is ' + employee);
         throw new AuthenticationError('Incorrect credentials');
       }
 
@@ -202,19 +288,34 @@ const resolvers = {
     // add course by employer
     addCourse: async (parent, args, context) => {
       if (context.employer) {
+<<<<<<< HEAD
         const course = await Course.create({ ...args, employer: context.employer._id });
+=======
+        const course = await Course.create({
+          ...args,
+          employer: context.employer._id,
+        });
+>>>>>>> feature/forms-backend-connection
 
         // update employer with new course
         await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
+<<<<<<< HEAD
           { $push: { courses: course._id }},
+=======
+          { $push: { courses: course._id } },
+>>>>>>> feature/forms-backend-connection
           { new: true, runValidators: true }
         );
         // update employee with new course
         if (args.employees) {
           await Employee.findByIdAndUpdate(
             { _id: args.employees },
+<<<<<<< HEAD
             { $push: { courses: course._id }},
+=======
+            { $push: { courses: course._id } },
+>>>>>>> feature/forms-backend-connection
             { new: true, runValidators: true }
           );
         }
@@ -226,16 +327,27 @@ const resolvers = {
     },
 
     // remove course
+<<<<<<< HEAD
     removeCourse: async (parent, { _id } , context) => {
+=======
+    removeCourse: async (parent, { _id }, context) => {
+>>>>>>> feature/forms-backend-connection
       if (context.employer) {
         const removedCourse = await Course.findByIdAndDelete({ _id: _id });
 
         await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
+<<<<<<< HEAD
           { $pull: { courses: _id }},
           { new: true }
         );
       
+=======
+          { $pull: { courses: _id } },
+          { new: true }
+        );
+
+>>>>>>> feature/forms-backend-connection
         return removedCourse;
       }
 
@@ -248,10 +360,17 @@ const resolvers = {
 
         await Employer.findByIdAndUpdate(
           { _id: context.employer._id },
+<<<<<<< HEAD
           { $pull: { courses: _id }},
           { new: true }
         );
       
+=======
+          { $pull: { courses: _id } },
+          { new: true }
+        );
+
+>>>>>>> feature/forms-backend-connection
         return removedEmployee;
       }
 
@@ -269,6 +388,7 @@ const resolvers = {
     },
 
     // updateEmployer for the possibility of it being the companyName, email, or password
+<<<<<<< HEAD
     updateEmployer: async (parents, {companyName, email, password}, context) => {
       if (context.employer) {
 
@@ -298,6 +418,41 @@ const resolvers = {
             model: 'Employee'
           }
         });
+=======
+    updateEmployer: async (
+      parents,
+      { companyName, email, password },
+      context
+    ) => {
+      if (context.employer) {
+        const employer = await Employer.findByIdAndUpdate(
+          context.employer._id,
+          { companyName: companyName, email: email, password: password },
+          { new: true, runValidators: true }
+        )
+          .populate({
+            path: 'employees',
+            populate: {
+              path: 'employerId',
+              model: 'Employer',
+            },
+            populate: {
+              path: 'courses',
+              model: 'Course',
+            },
+          })
+          .populate({
+            path: 'courses',
+            populate: {
+              path: 'employer',
+              model: 'Employer',
+            },
+            populate: {
+              path: 'employees',
+              model: 'Employee',
+            },
+          });
+>>>>>>> feature/forms-backend-connection
 
         const token = signToken(employer);
 
@@ -308,11 +463,30 @@ const resolvers = {
     },
     // updateEmployee for the possibility of it being the
     // firstName, lastName, email, department, role, or password
+<<<<<<< HEAD
     updateEmployee: async (parents,{firstName, lastName, email, department, role, password}, context) => {
       if (context.employer) {
         const employee = await Employee.findOneAndUpdate( 
           email, 
           {firstName: firstName, lastName: lastName, email: email, department: department, role: role, password: password},
+=======
+    updateEmployee: async (
+      parents,
+      { firstName, lastName, email, department, role, password },
+      context
+    ) => {
+      if (context.employer) {
+        const employee = await Employee.findOneAndUpdate(
+          email,
+          {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            department: department,
+            role: role,
+            password: password,
+          },
+>>>>>>> feature/forms-backend-connection
           { new: true, runValidators: true }
         )
           .populate('employerId')
@@ -320,8 +494,13 @@ const resolvers = {
             path: 'courses',
             populate: {
               path: 'employes',
+<<<<<<< HEAD
               model: 'Employee'
             }
+=======
+              model: 'Employee',
+            },
+>>>>>>> feature/forms-backend-connection
           });
 
         return employee;
@@ -331,6 +510,7 @@ const resolvers = {
     },
     // updateCourse for the possibility of needing to update
     // courseText or the employees array.
+<<<<<<< HEAD
     updateCourse: async (parents, {_id, courseText, employees}, context) => {
       if (context.employer) {
         const course = await Course.findByIdAndUpdate(
@@ -338,13 +518,29 @@ const resolvers = {
           {courseText: courseText, $addToSet: {employees: employees}},
           { new: true }
         ).populate('employer').populate('employees');
+=======
+    updateCourse: async (parents, { _id, courseText, employees }, context) => {
+      if (context.employer) {
+        const course = await Course.findByIdAndUpdate(
+          _id,
+          { courseText: courseText, $addToSet: { employees: employees } },
+          { new: true }
+        )
+          .populate('employer')
+          .populate('employees');
+>>>>>>> feature/forms-backend-connection
 
         return course;
       }
 
       throw new AuthenticationError('Need to be logged in!');
+<<<<<<< HEAD
     }
   }
+=======
+    },
+  },
+>>>>>>> feature/forms-backend-connection
 };
 
 module.exports = resolvers;

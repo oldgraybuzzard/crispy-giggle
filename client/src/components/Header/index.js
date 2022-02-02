@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+
 import Modal from '../Modal';
 import Button from '../FormElements/Button';
 import EmployerSignup from '../../pages/EmployerSignup';
 import Login from '../../pages/Login';
-function Header(props) {
+
+const Header = props => {
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
 
@@ -37,20 +39,21 @@ function Header(props) {
           <Login />
         </div>
       </Modal>
+
       <header className="flex-row px-1 header-style">
-        <h2> Crispy Gigglers</h2>
-        <nav>
-          <ul className="flex-row">
-            <li className="mx-2">
-              <p onClick={openModalHandler}> Employer Signup</p>
-            </li>
-            <li className="mx-2">
-              <p onClick={openModalHandler2}> Login </p>
-            </li>
-          </ul>
-        </nav>
+        <ul className="flex-row">
+          <li>
+            <h2>Crispy Gigglers</h2>
+          </li>
+          <li className="mx-2">
+            <p onClick={openModalHandler}> Employer Signup</p>
+          </li>
+          <li className="mx-2">
+            <p onClick={openModalHandler2}> Login </p>
+          </li>
+        </ul>
       </header>
     </>
   );
-}
+};
 export default Header;
