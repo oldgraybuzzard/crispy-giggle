@@ -43,7 +43,7 @@ This training application is intended to serve as a full-stack Mern-stack applic
   - [x] Redux form - [redux-form](https://redux-form.com/8.3.0). NOTE: Migrate to [formik](https://jaredpalmer.com/formik) soon
   - [ ] Authentication pages
     - [x] Sign up page
-    - [x] Login page with email and password
+    - [x] Employee Login page with email and password
     - [x] Course enrollment
  
 ### Database
