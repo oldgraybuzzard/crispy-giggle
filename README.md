@@ -13,7 +13,7 @@ Run `npm i` to install [npm](https://www.npmjs.com/) dependencies! 🎉
 ```
 AS AN employer
 I WANT to enroll employees in training courses 
-SO THAT they can stay updated with training required for the job
+SO THAT they can satisfy on-the-job training requirements.
 ```
 
 This training application is intended to serve as a full-stack Mern-stack application. The stack is made of MongoDB, Express, React, Redux and React.
@@ -35,10 +35,17 @@ This training application is intended to serve as a full-stack Mern-stack applic
     - [x] Local login - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
     - [x] Email verification
     - [x] Password verification
-    
+
 ### Frontend
-
-
+- Directory `client`
+- Created by using [create-react-app](https://www.npmjs.com/package/create-react-app)
+  - [x] Redux store - [react-redux](https://www.npmjs.com/package/react-redux)
+  - [x] Redux form - [redux-form](https://redux-form.com/8.3.0). NOTE: Migrate to [formik](https://jaredpalmer.com/formik) soon
+  - [ ] Authentication pages
+    - [x] Sign up page
+    - [x] Login page with email and password
+    - [x] Course enrollment
+ 
 ### Database
 
 ### Technical Acceptance Criteria: 25%
