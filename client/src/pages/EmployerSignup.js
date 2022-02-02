@@ -5,7 +5,7 @@ import { ADD_EMPLOYER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import './FormStyles.css';
 
-const EmployerSignup = () => {
+const EmployerSignup = props => {
   const [formState, setFormState] = useState({
     companyName: '',
     email: '',
@@ -30,8 +30,7 @@ const EmployerSignup = () => {
       const { data } = await addEmployer({
         variables: { ...formState },
       });
-
-      Auth.login(data.addUser.token);
+      Auth.login(data.addEmployer.token);
     } catch (e) {
       console.error(e);
     }
