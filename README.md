@@ -37,8 +37,16 @@ SO THAT they can satisfy on-the-job training requirements.
 This training application is intended to serve as a full-stack Mern-stack application. The stack is made of MongoDB, Express, React, Redux, graphql and apollo.
 
 ## ⚙️ Commands & Options
+To start `server`, `client`, run:
 
+```bash
+# In the root directory (mern):
+npm start
+# Server API is running at http://localhost:SERVER_PORT (http://localhost: by default)
+# Web client is running at http://localhost:PORT (http://localhost:3001 by default)
+```
 
+### Screenshots
 
 ### `deploy`
 
@@ -62,8 +70,6 @@ This training application is intended to serve as a full-stack Mern-stack applic
     - [x] Sign up page
     - [x] Employee Login page with email and password
     - [x] Course enrollment
- 
-### Database
 
 ### Technical Acceptance Criteria: 25%
 Satisfies all of the preceding acceptance criteria plus the following:
@@ -91,3 +97,6 @@ To fix a bug or enhance an existing module, follow these steps:
 Together, we can make this project **better** every day! 😘
 
 ## ⚠️ License
+This project is licensed under MIT.
+
+[![ForTheBadge built-with-swag](http://ForTheBadge.com/images/badges/built-with-swag.svg)](https://GitHub.com/oldgraybuzzard/crispy-giggle)
