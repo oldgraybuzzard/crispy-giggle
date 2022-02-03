@@ -1,13 +1,18 @@
 import React from 'react';
-import {  Grid, Icon, Label, Menu, Table, Button  } from 'semantic-ui-react';
-
+import {  Grid, Button  } from 'semantic-ui-react';
+import { Redirect, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { EMPLOYER_ME, QUERY_COURSES, QUERY_EMPLOYEES, QUERY_EMPLOYERS, QUERY_ME } from '../utils/queries';
-import spinner from '../assets/img/spinner.gif';
+import { EMPLOYEE_ME } from '../utils/queries';
 import './EmployeeDashboard.css';
+import Auth from '../utils/auth';
 
 const EmployeeDashBoard = (props) => {
-  const { loading, data } = useQuery(QUERY_EMPLOYEES, QUERY_COURSES, QUERY_ME, QUERY_EMPLOYERS, EMPLOYER_ME);
+  const { id: userParams } = useParams();
+
+  const { loading, data } = useQuery(EMPLOYEE_ME, {
+    variables: { email: userParams }
+  });
+  console.log(EMPLOYEE_ME.email)
 
   if (loading) {
     return (
@@ -15,8 +20,13 @@ const EmployeeDashBoard = (props) => {
     )
   }
   
-  const myEmployeeData = data?.QUERY_ME || [];
-  const myCourses = data?.QUERY_COURSES || [];
+  const myEmployeeData = data?.EMPLOYEE_ME || [];
+  console.log(EMPLOYEE_ME.email);
+
+     // redirect to employee-dashboard profile page if login name is yours
+     if (Auth.loggedIn() && Auth.getProfile().data.email === userParams) {
+      return <Redirect to="/employer-dashboard" />;
+    }
  
   return(
     <div className='container'>
@@ -25,12 +35,12 @@ const EmployeeDashBoard = (props) => {
         <Grid.Row>
           <Grid.Column className='center-objs'>
             <h2>My Record</h2>
-            <ul>
+            {/* <ul>
               {myCourses.courses.map((course) => (
                 <li key={course._id}>{course.courseTitle}</li>
               )
              )}
-           </ul>
+           </ul> */}
           </Grid.Column>
 
         </Grid.Row>

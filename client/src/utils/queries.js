@@ -94,22 +94,22 @@ export const QUERY_COURSES = gql`
 `;
 
 export const EMPLOYER_ME = gql`
-    {
-        employerMe {
+  {
+    employerMe {
+      _id
+      companyName
+      email
+      employees {
         _id
-        companyName
+        firstName
+        lastName
         email
-        employees {
+        department
+        role
+        courses {
             _id
-            firstName
-            lastName
-            email
-            department
-            role
-            courses {
-                _id
-                courseText
-                createdAt
+            courseText
+            createdAt
             }
         }
         courses {
@@ -124,4 +124,27 @@ export const EMPLOYER_ME = gql`
         }
         }
     }
+`;
+
+export const EMPLOYEE_ME = gql`
+
+{
+  employeeMe {
+    _id
+    firstName
+    lastName
+    email
+    department
+    role
+    employerId {
+      _id
+      companyName
+    }
+    courses {
+      _id
+      courseText
+      createdAt
+    }
+  }
+}
 `;
