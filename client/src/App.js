@@ -14,6 +14,7 @@ import Homepage from './pages/Homepage';
 import EmployerDashboard from './pages/EmployerDashboard';
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import AddEmployee from './pages/AddEmployee';
+import AddCourse from './pages/AddCourse';
 import NoMatch from './pages/NoMatch';
 import './index.css';
 
@@ -57,11 +58,8 @@ function App() {
                 path="/employee-dashboard"
                 component={EmployeeDashboard}
               />
-              <Route 
-                exact
-                path="/add-employee"
-                component={AddEmployee}
-              />
+              <Route exact path="/add-employee" component={AddEmployee} />
+              <Route exact path="/add-course" component={AddCourse} />
               <Route component={NoMatch} />
             </Switch>
           </div>
