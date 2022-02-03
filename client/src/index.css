@@ -166,3 +166,42 @@ a {
 }
 
 /* Employer Dasboard design ends */
+
+/* Homepage design */
+.homepage-courses-title {
+  margin: 1rem 0rem;
+}
+
+.homepage-courses {
+  border-bottom: 2px solid white;
+  font-style: italic;
+}
+
+.home-course-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px groove white;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem black;
+}
+
+.course-list-text {
+  color: white;
+  font-weight: 700;
+  width: 50rem;
+  height: 7rem;
+  background-color: #282c34;
+  border: 1px groove white;
+  border-radius: 0.3rem;
+  resize: none;
+}
+
+.course-list-width {
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-left: 5rem;
+  width: 90%;
+}
+
+/* Homepage design end */

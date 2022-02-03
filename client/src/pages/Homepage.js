@@ -16,21 +16,21 @@ const Homepage = () => {
   
   return (
     <>
-      <h1 className="center-objs">Courses</h1>
+      <h1 className="center-objs homepage-courses-title">
+        <span>
+          <span className="homepage-courses">Courses</span>
+        </span>
+      </h1>
       <Grid columns='equal'>
         <Grid.Row>
           <Grid.Column width={9} className="center-objs">
             <ul>
               {courseData.map((course) => (
-                  <li key={course._id} className="empr-course-list">
-                      <h2>{course.courseTitle}</h2>
-                      <textarea value={course.courseText} />
+                  <li key={course._id} className="home-course-list course-list-width">
+                      <h2>{course.courseTitle} By {course.employer[0].companyName}</h2>
+                      <textarea value={course.courseText} className="course-list-text" />
                       <p>
                         Number of employees: {course.employees.length}
-                        <br />
-                        <br />
-                        <br />
-                        By <h4>{course.employer[0].companyName}</h4>
                       </p>
                   </li>
               ))}
