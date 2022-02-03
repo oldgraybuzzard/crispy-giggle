@@ -20,26 +20,19 @@ const EmployeeDashBoard = (props) => {
   return(
     <div className='container'>
       <h2 className='text-center'>{myEmployeeData.firstName} {myEmployeeData.lastName}'s Training Record</h2>
-      <Grid columns='equal'>
-        <Grid.Row>
-          <Grid.Column className='center-objs'>
-            <h2>My Courses</h2>
-            <ul>
-              {myEmployeeData.courses.map((course) => (
-                <li key={course._id}>{course.courseTitle}</li>
-              )
-              
-             )}
       
-           </ul>
-          </Grid.Column>
-
-        </Grid.Row>
-
-
+      <h3>{myEmployeeData.firstName}'s' Courses</h3>
+      <Grid divided='vertically'>
+        {myEmployeeData.courses.map((course) => (
+          <Grid.Row columns={3}>
+            {<Grid.Column className='center-objs' key={course._id}>{course.courseTitle}</Grid.Column>}
+            {<Grid.Column className='center-objs' key={course._id}>{course.courseText}</Grid.Column>}
+            {<Grid.Column className='center-objs' key={course._id}>{course.createdAt}</Grid.Column>}
+          </Grid.Row>
+        )
+        )}
+      
       </Grid>
-    
-    
     </div>
     );
   }

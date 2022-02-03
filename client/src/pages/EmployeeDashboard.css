@@ -2,3 +2,11 @@ table {
   width: 50%;
   border-collapse: 2px solid #C9CEBD
 }
+
+h2 {
+  text-align: left;
+}
+
+h3 {
+  text-align: center;
+}
