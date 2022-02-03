@@ -1,5 +1,3 @@
-import React from 'react';
-
 import decode from 'jwt-decode';
 
 class AuthService {
@@ -29,7 +27,7 @@ class AuthService {
     return localStorage.getItem('id_token');
   }
 
-  login(idToken) {
+  employerLogin(idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
 
