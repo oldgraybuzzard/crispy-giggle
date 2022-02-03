@@ -32,3 +32,23 @@ export const EMPLOYER_ME = gql`
         }
     }
 `;
+
+export const COURSES = gql`
+    query Courses {
+        courses {
+            _id
+            courseText
+            createdAt
+            courseTitle
+            employer {
+                _id
+                companyName
+            }
+            employees {
+                _id
+                firstName
+                lastName
+            }
+        }
+    }
+`;
