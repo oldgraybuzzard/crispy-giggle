@@ -9,7 +9,7 @@ db.once('open', async () => {
   
   
   //seeds for Employer  
-  const employers = await Employer.insertMany([
+  const employers = await Employer.create([
     {
       companyName: 'Company A',
       email: 'companya@test.com',
@@ -60,7 +60,7 @@ db.once('open', async () => {
   console.log('courses seeded');
 
   //seeds for Employee
-  const employee = await Employee.insertMany([
+  const employee = await Employee.create([
     {
       firstName: 'John',
       lastName: 'Tester1',
