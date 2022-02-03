@@ -42,4 +42,3 @@ db.once('open', () => {
     console.log(`🌍 Now listening on localhost:${PORT}!`);
   });
 });
-
