@@ -63,3 +63,14 @@ export const ADD_EMPLOYEE = gql`
     }
   }
 `;
+
+export const ADD_COURSE = gql`
+  mutation AddCourse($courseText: String!, $employees: ID, $courseTitle: String!) {
+    addCourse(courseText: $courseText, employees: $employees, courseTitle: $courseTitle) {
+      _id
+      courseTitle
+      courseText
+      createdAt
+    }
+  }
+`;
