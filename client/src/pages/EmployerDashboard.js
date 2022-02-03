@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import {Grid, Button} from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import { useQuery } from "@apollo/client";
 import { EMPLOYER_ME } from "../utils/queries";
 
@@ -16,40 +16,41 @@ const EmployerDashboard = (props) => {
   const employerData = data?.employerMe || [];
   
   return (
-    <>
-      <h1 className="center-objs">{employerData.companyName}</h1>
-      <Grid columns='equal'>
-        <Grid.Row>
-          <Grid.Column className="center-objs">
-            <h2>Employees!</h2>
-            <ul>
-              {employerData.employees.map((employee) => (
-                  <li key={employee._id}>{employee.firstName} {employee.lastName} {employee._id}</li>
-                )
-              )}
-            </ul>
-          </Grid.Column>
+    <div className="center-content">
+      <h2 className="center-objs b-bottom">{employerData.companyName}</h2>
+      <div className="container">
+        <section className="emp-list-container center-objs">
+          <h2>Employees!</h2>
+          <ul className="emp-container">
+            {employerData.employees.map((employee) => (
+              // add css to margin: 1rem 0rem for li tags
+                <li key={employee._id} className='space-top-bottom'>
+                  <p>Employee ID: {employee._id}</p> 
+                  <p>Employee Name: {employee.firstName} {employee.lastName}</p>
+                </li>
+              )
+            )}
+          </ul>
+        </section>
 
-          <Grid.Column width={9} className="center-objs">
-            <h2>Courses!</h2>
-            <ul>
-              {employerData.courses.map((course) => (
-                  <li key={course._id} className="empr-course-list">
-                      <h2>{course.courseTitle}</h2>
-                      <p>Number of employees: {course.employees.length}</p>
-                  </li>
-              ))}
-            </ul>
-          </Grid.Column>
+        <section className="center-objs">
+          <h2>Courses!</h2>
+          <ul>
+            {employerData.courses.map((course) => (
+                <li key={course._id} className="empr-course-list">
+                    <h3 className="course-li-space">{course.courseTitle}</h3>
+                    <p>Number of employees: {course.employees.length}</p>
+                </li>
+            ))}
+          </ul>
+        </section>
 
-          <Grid.Column>
-            <Button as={Link} to="/add-course" className="empr-btns center-objs">Create a Course</Button>
-            
-            <Button as={Link} to="/add-employee" className="empr-btns center-objs">Add Employee</Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </>
+        <section className="center-objs">
+          <Button as={Link} to="/add-course" className="empr-btns center-objs">Create a Course</Button>
+          <Button as={Link} to="/add-employee" className="empr-btns center-objs">Add Employee</Button>
+        </section>
+      </div>
+    </div>
   )
 }
 

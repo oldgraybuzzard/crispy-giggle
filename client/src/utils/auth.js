@@ -27,9 +27,14 @@ class AuthService {
     return localStorage.getItem('id_token');
   }
 
+  getIsEmployer() {
+    return localStorage.getItem('is_employer');
+  }
+
   employerLogin(idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
+    localStorage.setItem('is_employer', true);
 
     window.location.assign('/');
   }
@@ -37,13 +42,16 @@ class AuthService {
   employeeLogin(idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
+    localStorage.setItem('is_employer', false);
 
-    window.location.assign('/');
+    window.location.assign('/employee-dashboard');
   }
 
   logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
+    // Clear is_employer from localStorage
+    localStorage.removeItem('is_employer'); 
     // this will reload the page and reset the state of the application
     window.location.assign('/');
   }

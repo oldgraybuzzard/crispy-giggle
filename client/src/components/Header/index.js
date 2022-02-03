@@ -8,6 +8,7 @@ import Button from '../FormElements/Button';
 import EmployerSignup from '../../pages/EmployerSignup';
 import EmployerLogin from '../../pages/EmployerLogin';
 import EmployeeLogin from '../../pages/EmployeeLogin';
+import logo from '../../assets/img/logo.png';
 
 const Header = () => {
   const logout = event => {
@@ -72,18 +73,17 @@ const Header = () => {
       </Modal>
 
       <header className="header-container">
+        <img src={logo} alt="CG Logo" style={{width: 50, padding: "20px" }}></img>
         <div className="header-div">
           <Link to="/">
-            <h1 className="app-name">Crispy Gigglers</h1>
+            <h1 className="app-name text-left">Versa-Train</h1>
           </Link>
           <nav className="text-center">
-            <p className="p-header" onClick={openModalHandler3}>
-              Employee Login
-            </p>
+            
 
             {Auth.loggedIn() ? (
               <>
-                <Link to="/employer-dashboard" className="a-header">
+                <Link to={Auth.getIsEmployer() ? "/employer-dashboard" : "/employee-dashboard" } className="a-header">
                   Dashboard
                 </Link>
                 <a href="/" className="a-header" onClick={logout}>
@@ -92,6 +92,9 @@ const Header = () => {
               </>
             ) : (
               <>
+                <p className="p-header" onClick={openModalHandler3}>
+                  Employee Login
+                </p>
                 <p className="p-header" onClick={openModalHandler}>
                   Employer Signup
                 </p>

@@ -35,7 +35,7 @@ export const ADD_EMPLOYER = gql`
 `;
 
 export const ADD_EMPLOYEE = gql`
-  mutation AddEmployee(
+  mutation addEmployee(
     $firstName: String!
     $lastName: String!
     $email: String!
@@ -63,7 +63,6 @@ export const ADD_EMPLOYEE = gql`
     }
   }
 `;
-
 export const ADD_COURSE = gql`
   mutation AddCourse($courseText: String!, $employees: ID, $courseTitle: String!) {
     addCourse(courseText: $courseText, employees: $employees, courseTitle: $courseTitle) {
