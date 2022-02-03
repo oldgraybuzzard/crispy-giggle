@@ -1,7 +1,6 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-
   type Employer {
     _id: ID
     companyName: String
@@ -9,7 +8,6 @@ const typeDefs = gql`
     employees: [Employee]
     courses: [Course]
   }
-
   type Employee {
     _id: ID
     firstName: String
@@ -20,7 +18,7 @@ const typeDefs = gql`
     employerId: [Employer]
     courses: [Course]
   }
-
+  
   type Course {
     _id: ID
     courseTitle: String
@@ -39,31 +37,42 @@ const typeDefs = gql`
     token: ID!
     employee: Employee
   }
-
   type Query {
     employerMe: Employer
     employer(companyName: String!): Employer
     employers: [Employer]
-
     employeeMe: Employee
     employee(_id: ID!): Employee
-
     courses: [Course]
     course(_id: ID!): Course
   }
-
   type Mutation {
     addEmployer(companyName: String!, email: String!, password: String!): Auth
     employerLogin(email: String!, password: String!): Auth
-
-    addEmployee(firstName: String!, lastName: String!, email: String!, password: String!, department: String!, role: String!): Employee
+    addEmployee(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+      department: String!
+      role: String!
+    ): Employee
     employeeLogin(email: String!, password: String!): EmployeeAuth
-
     addCourse(courseTitle: String!, courseText: String!, employees: ID): Course
-
     updateEmployer(companyName: String, email: String, password: String): Auth
-    updateEmployee(firstName: String, lastName: String, department: String, role: String, password: String): Employee
-    updateCourse(_id: ID!, courseTitle: String, courseText: String, employees: [ID]): Course
+    updateEmployee(
+      firstName: String
+      lastName: String
+      department: String
+      role: String
+      password: String
+    ): Employee
+    updateCourse(
+      _id: ID!
+      courseTitle: String
+      courseText: String
+      employees: [ID]
+    ): Course
 
     removeCourse(_id: ID!): Course
     removeEmployee(_id: ID!): Employee
