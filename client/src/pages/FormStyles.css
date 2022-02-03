@@ -5,4 +5,82 @@
   padding: 1rem;
   width: 90%;
   max-width: 40rem;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.form-input {
+  margin-bottom: 2rem;
+  width: 90%;
+  height: 1.8rem;
+  overflow: none;
+  border-radius: 0.3rem;
+}
+
+.form-input-signup {
+  margin-bottom: 1.5rem;
+  width: 90%;
+  height: 1.5rem;
+  overflow: none;
+  border-radius: 0.3rem;
+}
+
+.form-title {
+  text-align: center;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  font-size: 1.2rem;
+}
+
+.form-title-signup {
+  text-align: center;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  font-size: 1.2rem;
+}
+
+.form-button {
+  font: inherit;
+  padding: 0.3rem 1.3rem;
+  border: 1px solid #324a5f;
+  border-radius: 4px;
+  background: #324a5f;
+  color: white;
+  cursor: pointer;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.form-button-signup {
+  font: inherit;
+  padding: 0.2rem 1.2rem;
+  border: 1px solid #324a5f;
+  border-radius: 4px;
+  background: #324a5f;
+  color: white;
+  cursor: pointer;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.form-button:focus {
+  outline: none;
+}
+
+.form-button:hover,
+.form-button:active {
+  background: #ccc9dc;
+  border-color: #ccc9dc;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-button-signup {
+    margin-right: 8rem;
+  }
 }
