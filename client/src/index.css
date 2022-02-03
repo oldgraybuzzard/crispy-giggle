@@ -22,6 +22,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 99.9%;
+  margin-top:auto
 }
 
 .mx-2 {
