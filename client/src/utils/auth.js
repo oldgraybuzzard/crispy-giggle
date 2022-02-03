@@ -44,7 +44,7 @@ class AuthService {
     localStorage.setItem('id_token', idToken);
     localStorage.setItem('is_employer', false);
 
-    window.location.assign('/');
+    window.location.assign('/employee-dashboard');
   }
 
   logout() {

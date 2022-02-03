@@ -30,46 +30,6 @@ const Header = () => {
   const openModalHandler3 = () => setShowModal3(true);
   const closeModalHandler3 = () => setShowModal3(false);
 
-  const isEmployer = () => {
-    if ((Auth.getIsEmployer === true) & Auth.loggedIn()) {
-      return (
-        <>
-          <Link to="/employer-dashboard" className="a-header">
-            Dashboard
-          </Link>
-          <a href="/" className="a-header" onClick={logout}>
-            Logout
-          </a>
-        </>
-      );
-    } else if (Auth.getIsEmployer === false && Auth.loggedIn()) {
-      return (
-        <>
-          <Link to="/employee-dashboard" className="a-header">
-            Dashboard
-          </Link>
-          <a href="/" className="a-header" onClick={logout}>
-            Logout
-          </a>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <p className="p-header" onClick={openModalHandler}>
-            Employer Signup
-          </p>
-          <p className="p-header" onClick={openModalHandler3}>
-            Employee Login
-          </p>
-          <p className="p-header" onClick={openModalHandler2}>
-            Employer Login
-          </p>
-        </>
-      );
-    }
-  };
-
   return (
     <>
       <Modal
@@ -116,10 +76,74 @@ const Header = () => {
           <Link to="/">
             <h1 className="app-name">Crispy Gigglers</h1>
           </Link>
-          <nav className="text-center">{isEmployer()}</nav>
+          <nav className="text-center">
+            <p className="p-header" onClick={openModalHandler3}>
+              Employee Login
+            </p>
+
+            {Auth.loggedIn() ? (
+              <>
+                <Link to="/employer-dashboard" className="a-header">
+                  Dashboard
+                </Link>
+                <a href="/" className="a-header" onClick={logout}>
+                  Logout
+                </a>
+              </>
+            ) : (
+              <>
+                <p className="p-header" onClick={openModalHandler}>
+                  Employer Signup
+                </p>
+                <p className="p-header" onClick={openModalHandler2}>
+                  Employer Login
+                </p>
+              </>
+            )}
+          </nav>
         </div>
       </header>
     </>
   );
 };
 export default Header;
+
+// const isEmployer = () => {
+//   if ((Auth.getIsEmployer === true) & Auth.loggedIn()) {
+//     return (
+//       <>
+//         <Link to="/employer-dashboard" className="a-header">
+//           Dashboard
+//         </Link>
+//         <a href="/" className="a-header" onClick={logout}>
+//           Logout
+//         </a>
+//       </>
+//     );
+//   } else if (Auth.getIsEmployer === false && Auth.loggedIn()) {
+//     return (
+//       <>
+//         <Link to="/employee-dashboard" className="a-header">
+//           Dashboard
+//         </Link>
+//         <a href="/" className="a-header" onClick={logout}>
+//           Logout
+//         </a>
+//       </>
+//     );
+//   } else {
+//     return (
+//       <>
+//         <p className="p-header" onClick={openModalHandler}>
+//           Employer Signup
+//         </p>
+//         <p className="p-header" onClick={openModalHandler3}>
+//           Employee Login
+//         </p>
+//         <p className="p-header" onClick={openModalHandler2}>
+//           Employer Login
+//         </p>
+//       </>
+//     );
+//   }
+// };
