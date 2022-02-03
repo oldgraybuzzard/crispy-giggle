@@ -27,9 +27,14 @@ class AuthService {
     return localStorage.getItem('id_token');
   }
 
+  getIsEmployer() {
+    return localStorage.getItem('is_employer');
+  }
+
   employerLogin(idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
+    localStorage.setItem('is_employer', true);
 
     window.location.assign('/');
   }
@@ -37,6 +42,7 @@ class AuthService {
   employeeLogin(idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
+    localStorage.setItem('is_employer', false);
 
     window.location.assign('/');
   }

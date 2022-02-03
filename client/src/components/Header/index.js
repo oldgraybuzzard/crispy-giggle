@@ -8,6 +8,7 @@ import Button from '../FormElements/Button';
 import EmployerSignup from '../../pages/EmployerSignup';
 import EmployerLogin from '../../pages/EmployerLogin';
 import EmployeeLogin from '../../pages/EmployeeLogin';
+import e from 'express';
 
 const Header = () => {
   const logout = event => {
@@ -29,6 +30,34 @@ const Header = () => {
 
   const openModalHandler3 = () => setShowModal3(true);
   const closeModalHandler3 = () => setShowModal3(false);
+
+  const isEmployer = () => {
+    if (Auth.getIsEmployer === true) {
+      return Auth.loggedIn();
+    } else if (Auth.getIsEmployer === false) {
+      return ( 
+        {Auth.loggedIn() ? (
+              <>
+                <Link to="/employer-dashboard" className="a-header">
+                  Dashboard
+                </Link>
+                <a href="/" className="a-header" onClick={logout}>
+                  Logout
+                </a>
+              </>
+            ) : (
+              <>
+                <p className="p-header" onClick={openModalHandler}>
+                  Employer Signup
+                </p>
+                <p className="p-header" onClick={openModalHandler2}>
+                  Employer Login
+                </p>
+              </>
+            )}
+            )
+    }
+  };
 
   return (
     <>
