@@ -80,6 +80,10 @@
   border-radius: 0.3rem;
 }
 
+.span-text {
+  font-size: 1.5rem;
+}
+
 .form-title-add-employee {
   text-align: center;
   margin-top: 0.5rem;
