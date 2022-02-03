@@ -127,7 +127,6 @@ export const EMPLOYER_ME = gql`
 `;
 
 export const EMPLOYEE_ME = gql`
-
 {
   employeeMe {
     _id
@@ -142,6 +141,7 @@ export const EMPLOYEE_ME = gql`
     }
     courses {
       _id
+      courseTitle
       courseText
       createdAt
     }
