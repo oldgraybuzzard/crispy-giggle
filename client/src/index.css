@@ -130,7 +130,18 @@ a {
   border-top: 1px solid white;
 }
 
+.space-top-bottom {
+  margin: 1rem 0rem;
+}
 
+.course-li-space{
+  margin-right: 2rem;
+}
+
+.b-bottom{
+  border-bottom: 1px solid white;
+  box-shadow: 0rem 1rem 1rem black;
+}
 
 .empr-course-list {
   margin: 1rem 0rem;

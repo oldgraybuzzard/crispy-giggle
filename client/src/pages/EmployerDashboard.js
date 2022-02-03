@@ -17,14 +17,14 @@ const EmployerDashboard = (props) => {
   
   return (
     <div className="center-content">
-      <h2 className="center-objs">{employerData.companyName}</h2>
+      <h2 className="center-objs b-bottom">{employerData.companyName}</h2>
       <div className="container">
         <section className="emp-list-container center-objs">
           <h2>Employees!</h2>
           <ul className="emp-container">
             {employerData.employees.map((employee) => (
               // add css to margin: 1rem 0rem for li tags
-                <li key={employee._id}>
+                <li key={employee._id} className='space-top-bottom'>
                   <p>Employee ID: {employee._id}</p> 
                   <p>Employee Name: {employee.firstName} {employee.lastName}</p>
                 </li>
@@ -38,7 +38,7 @@ const EmployerDashboard = (props) => {
           <ul>
             {employerData.courses.map((course) => (
                 <li key={course._id} className="empr-course-list">
-                    <h3>{course.courseTitle}</h3>
+                    <h3 className="course-li-space">{course.courseTitle}</h3>
                     <p>Number of employees: {course.employees.length}</p>
                 </li>
             ))}
