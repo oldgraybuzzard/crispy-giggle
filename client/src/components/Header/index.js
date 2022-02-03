@@ -8,7 +8,7 @@ import Button from '../FormElements/Button';
 import EmployerSignup from '../../pages/EmployerSignup';
 import EmployerLogin from '../../pages/EmployerLogin';
 import EmployeeLogin from '../../pages/EmployeeLogin';
-import logo from '../../assets/img/online-course.png'
+import logo from '../../assets/img/logo.png';
 
 const Header = () => {
   const logout = event => {
