@@ -3,7 +3,12 @@
 🌐 MERN Stack [Training Application]
 </h1>
 <p align="center">
-MongoDB, Expressjs, React/Redux, Nodejs, graphql, apollo
+<img src="https://img.shields.io/badge/javascript-yellow" />
+    <img src="https://img.shields.io/badge/mongoDB-purple" />
+    <img src="https://img.shields.io/badge/express-red" />
+    <img src="https://img.shields.io/badge/react-green" />
+    <img src="https://img.shields.io/badge/graphQL-yellow" />
+    <img src="https://img.shields.io/badge/apollo-blue" />
 </p>
 
 
@@ -18,7 +23,8 @@ MongoDB, Expressjs, React/Redux, Nodejs, graphql, apollo
 
 
 ## ⚡️ Quick start
-Run `npm i` to install [npm](https://www.npmjs.com/) dependencies! 🎉
+Run `npm i` to install [npm](https://www.npmjs.com/) dependencies! 
+Follow by `npm start`🎉
 
 
 ## 📖 Project 
@@ -31,6 +37,7 @@ SO THAT they can satisfy on-the-job training requirements.
 This training application is intended to serve as a full-stack Mern-stack application. The stack is made of MongoDB, Express, React, Redux, graphql and apollo.
 
 ## ⚙️ Commands & Options
+
 
 
 ### `deploy`
