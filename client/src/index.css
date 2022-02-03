@@ -112,17 +112,42 @@ a {
 
 /* EmployerDashboard design Chris */
 
-.empr-course-list {
+.container {
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+
+.emp-list-container {
+  margin-left: 1rem;
+
+}
+
+.emp-container {
+  margin: 1rem 0rem;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+}
+
+
+
+.empr-course-list {
+  margin: 1rem 0rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .center-objs {
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+
+.center-content {
+  width: 100%;
 }
 
 .empr-btns {
