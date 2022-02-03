@@ -19,7 +19,8 @@ export const QUERY_EMPLOYERS = gql`
         }
       }
     }
-  `;
+  }
+`;
 
 export const QUERY_EMPLOYEES = gql`
   {
@@ -68,4 +69,59 @@ export const QUERY_CHECKOUT = gql`
       session
     }
   }
+`;
+
+export const QUERY_COURSES = gql`
+  {
+    courses {
+      curseTitle
+      courseText
+      employer {
+        _id
+        companyName
+        courses
+      }
+      employees {
+        _id
+        firstName
+        lastname
+        email
+        department
+        role
+      }
+    }
+  }
+`;
+
+export const EMPLOYER_ME = gql`
+    {
+        employerMe {
+        _id
+        companyName
+        email
+        employees {
+            _id
+            firstName
+            lastName
+            email
+            department
+            role
+            courses {
+                _id
+                courseText
+                createdAt
+            }
+        }
+        courses {
+            _id
+            courseTitle
+            courseText
+            createdAt
+            employees {
+                firstName
+                lastName
+            }
+        }
+        }
+    }
 `;

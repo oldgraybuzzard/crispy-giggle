@@ -1,11 +1,11 @@
 import React, { createContext, useContext } from 'react';
-import { useCourseReduce } from './reducers';
+import { useCourseReducer } from './reducers';
 
 const storeContext = createContext();
 const{ Provider } = storeContext;
 
 const StoreProvider = ({ value = [], ...props }) => {
-  const [state, dispatch] = useCourseReduce({
+  const [state, dispatch] = useCourseReducer({
     employers: [],
     cart: [],
     cartOpen: false,
