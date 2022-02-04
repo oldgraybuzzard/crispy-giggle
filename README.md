@@ -41,7 +41,7 @@ To start `server`, `client`, run:
 
 ```bash
 # In the root directory (mern):
-npm start
+  npm start 
 # Server API is running at http://localhost:SERVER_PORT (http://localhost: by default)
 # Web client is running at http://localhost:PORT (http://localhost:3001 by default)
 ```
