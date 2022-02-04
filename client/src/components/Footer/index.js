@@ -1,5 +1,6 @@
 import React from 'react';
 import Contact from '../ContactUs';
+import logo from '../../assets/img/logo.png';
 
 function Footer() {
   function fullYear() {
@@ -12,8 +13,9 @@ function Footer() {
   return (
     <footer className="foot-Container">
       <h2 className="copyright">
-        &copy; <span>{fullYear()}</span> Crispy Gigglers
+        &copy; <span>{fullYear()} Crispy Gigglers</span> 
       </h2>
+      
       <Modal />
     </footer>
   );

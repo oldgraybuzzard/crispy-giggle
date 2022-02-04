@@ -55,6 +55,60 @@
   display: inline-block;
 }
 
+/* add-employee styles */
+
+.add-employee-form {
+  list-style: none;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
+  max-width: 50rem;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border: 2px solid white;
+  margin-top: 1rem;
+}
+
+.form-input-add-employee {
+  margin-bottom: 2rem;
+  width: 40rem;
+  height: 1.8rem;
+  overflow: none;
+  border-radius: 0.3rem;
+}
+
+.span-text {
+  font-size: 1.5rem;
+}
+
+.form-title-add-employee {
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 2rem;
+  border-bottom: 2px solid white;
+}
+
+.form-button-add-employee {
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #324a5f;
+  border-radius: 4px;
+  background: #324a5f;
+  color: white;
+  cursor: pointer;
+  align-items: center;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* add-employee styles end */
+
 .form-button-signup {
   font: inherit;
   padding: 0.2rem 1.2rem;

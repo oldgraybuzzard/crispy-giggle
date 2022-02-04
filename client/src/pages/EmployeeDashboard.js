@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import {  Grid, Button  } from 'semantic-ui-react';
+import {  Grid } from 'semantic-ui-react';
 import { useQuery } from '@apollo/client';
-import { EMPLOYEE_ME, QUERY_EMPLOYEES } from '../utils/queries';
+import { EMPLOYEE_ME } from '../utils/queries';
 import './EmployeeDashboard.css';
 
 const EmployeeDashBoard = (props) => {
