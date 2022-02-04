@@ -24,7 +24,7 @@
 
 ## ⚡️ Quick start
 Run `npm i` to install [npm](https://www.npmjs.com/) dependencies! 
-Follow by `npm start`🎉
+Follow by `npm run develop`🎉
 
 
 ## 📖 Project 
