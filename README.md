@@ -41,18 +41,18 @@ To start `server`, `client`, run:
 
 ```bash
 # In the root directory (mern):
-npm start
+  npm start 
 # Server API is running at http://localhost:SERVER_PORT (http://localhost: by default)
 # Web client is running at http://localhost:PORT (http://localhost:3001 by default)
 ```
 
-### Screenshots
+### Screenshots📝
+
+![screenshot2](https://user-images.githubusercontent.com/87583026/152462021-41e01498-b189-4053-8f96-932fce2cc152.PNG)
 
 ### `deploy`
 
-
-
-## 📝
+https://crispy-gigglers.herokuapp.com/
 
 ### Backend
  - [x] Authentication system - [jasonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
