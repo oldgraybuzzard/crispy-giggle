@@ -1,5 +1,5 @@
 .ui.modal {
-  background-color: #AFB3F7;
+  background-color: #7eb8e7;
 }
 
 .content {
@@ -7,14 +7,28 @@
 }
 
 .ui.header {
-  font-size: 1.5rem;
+  background-color: #1b2a41;
+  color: white; 
+  font-size: 2rem;
   font-weight: bold;
+  padding: 1rem;
+}
+.ui.p {
+  font-size: 1rem;
 }
 
 input.form-control {
   font-size: 1rem;
+  /* padding: 1rem 1rem 1rem 1rem; */
+  margin: 0.5rem;
 }
 
-textarea.form-control {
+textarea {
   font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+label {
+  font-weight: bold;
+  padding: 0.3rem;
 }

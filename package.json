@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/oldgraybuzzard/crispy-giggle#readme",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "mongo": "^0.1.0"
   }
