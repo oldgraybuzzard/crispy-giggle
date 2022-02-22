@@ -115,7 +115,11 @@ a {
 
 /* Footer design ends */
 
-/* EmployerDashboard design Chris */
+/* EmployerDashboard design */
+.employer-name {
+  text-shadow: 0rem 0rem 0.5rem black;
+  font-size: 3rem;
+}
 
 .container {
   margin-top: 1rem;
@@ -126,7 +130,8 @@ a {
 
 .emp-list-container {
   margin-left: 1rem;
-
+  color: black;
+  margin-bottom: 1rem;
 }
 
 .emp-container {
@@ -146,6 +151,11 @@ a {
 .b-bottom{
   border-bottom: 1px solid white;
   box-shadow: 0rem 1rem 1rem black;
+}
+
+.course-comp {
+  color: black;
+  margin-bottom: 1rem;
 }
 
 .empr-course-list {
@@ -168,6 +178,10 @@ a {
 
 .empr-btns {
   width: 10rem;
+}
+
+.but-comp {
+  margin-bottom: 1rem;
 }
 
 /* Employer Dasboard design ends */
@@ -214,6 +228,7 @@ a {
 }
 
 /* Homepage design end */
+
 
 @media screen and (max-width: 1100px) {
   .course-list-text {

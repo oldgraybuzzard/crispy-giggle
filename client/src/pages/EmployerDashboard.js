@@ -17,7 +17,7 @@ const EmployerDashboard = (props) => {
   
   return (
     <div className="center-content">
-      <h2 className="center-objs b-bottom">{employerData.companyName}</h2>
+      <h2 className="center-objs b-bottom"><span className="employer-name">{employerData.companyName}</span></h2>
       <div className="container">
         <section className="emp-list-container center-objs">
           <h2>Employees!</h2>
@@ -33,7 +33,7 @@ const EmployerDashboard = (props) => {
           </ul>
         </section>
 
-        <section className="center-objs">
+        <section className="center-objs course-comp">
           <h2>Courses!</h2>
           <ul>
             {employerData.courses.map((course) => (
@@ -45,7 +45,7 @@ const EmployerDashboard = (props) => {
           </ul>
         </section>
 
-        <section className="center-objs">
+        <section className="center-objs but-comp">
           <Button as={Link} to="/add-course" className="empr-btns center-objs">Create a Course</Button>
           <Button as={Link} to="/add-employee" className="empr-btns center-objs">Add Employee</Button>
         </section>
