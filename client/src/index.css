@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: #282c34;
+  background-color: #c3d1ec;
   color: white;
 }
 
@@ -16,13 +16,15 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  box-shadow: 0 0 1rem black;
   border: 1px solid white;
   border-radius: 0.5rem;
   padding: 1.5rem 0rem;
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
-  width: 99.9%;
-  margin-top:auto
+  width: 99.9%; */
+  margin-top:auto;
+  background-color: #0d1629;
 }
 
 .mx-2 {
@@ -58,6 +60,8 @@ h2 {
   border-radius: 0.5rem;
   padding: 1.5rem 0rem;
   flex-wrap: wrap;
+  box-shadow: 0 0 1rem black;
+  background-color: #0d1629;
 }
 
 .header-div {
@@ -111,7 +115,11 @@ a {
 
 /* Footer design ends */
 
-/* EmployerDashboard design Chris */
+/* EmployerDashboard design */
+.employer-name {
+  text-shadow: 0rem 0rem 0.5rem black;
+  font-size: 3rem;
+}
 
 .container {
   margin-top: 1rem;
@@ -122,7 +130,8 @@ a {
 
 .emp-list-container {
   margin-left: 1rem;
-
+  color: black;
+  margin-bottom: 1rem;
 }
 
 .emp-container {
@@ -142,6 +151,11 @@ a {
 .b-bottom{
   border-bottom: 1px solid white;
   box-shadow: 0rem 1rem 1rem black;
+}
+
+.course-comp {
+  color: black;
+  margin-bottom: 1rem;
 }
 
 .empr-course-list {
@@ -166,6 +180,10 @@ a {
   width: 10rem;
 }
 
+.but-comp {
+  margin-bottom: 1rem;
+}
+
 /* Employer Dasboard design ends */
 
 /* Homepage design */
@@ -174,7 +192,9 @@ a {
 }
 
 .homepage-courses {
-  border-bottom: 2px solid white;
+  color: black;
+  font-size: 5rem;
+  border-bottom: 2px solid black;
   font-style: italic;
 }
 
@@ -185,6 +205,8 @@ a {
   border: 1px groove white;
   border-radius: 1rem;
   box-shadow: 0 0 1rem black;
+  background-color: #0d1629;
+  text-align: center;
 }
 
 .course-list-text {
@@ -206,3 +228,46 @@ a {
 }
 
 /* Homepage design end */
+
+
+@media screen and (max-width: 1100px) {
+  .course-list-text {
+    font-size: 1rem;
+    width: 30rem;
+    height: 7rem;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .course-list-width {
+    width: 30rem;
+  }
+  .h2-sizes {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .course-list-width {
+    width: 25rem;
+  }
+  .h2-sizes {
+    font-size: 1.2rem;
+  }
+  .course-list-text {
+    height: 17rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .course-list-width {
+    width: 17rem;
+  }
+}
+
+
+@media screen and (max-width: 376px) {
+  .course-list-width {
+    width: 12rem;
+  }
+}
